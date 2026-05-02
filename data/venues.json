@@ -1,13 +1,13 @@
 {
   "updatedAt": "2026-05-02",
   "scoring": {
-    "work": 0.22,
-    "parkingBenefit": 0.18,
-    "parkingCapacity": 0.16,
-    "access": 0.16,
-    "price": 0.12,
-    "lunch": 0.10,
-    "capacity": 0.06
+    "parkingBenefit": 0.28,
+    "parkingCapacity": 0.24,
+    "work": 0.16,
+    "access": 0.12,
+    "price": 0.08,
+    "lunch": 0.08,
+    "capacity": 0.04
   },
   "venues": [
     {

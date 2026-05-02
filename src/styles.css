@@ -194,9 +194,27 @@ select {
   border-radius: 999px;
 }
 
-.pin.best { background: var(--blue); }
+.pin.best { background: var(--green); }
 .pin.normal { background: var(--muted); }
 .pin.base { background: var(--rose); }
+
+.venue-marker {
+  background: transparent;
+  border: 0;
+}
+
+.ranked-marker {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 3px 10px rgba(23, 32, 42, 0.32);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
 
 .insight-grid {
   display: grid;

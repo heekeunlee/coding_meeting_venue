@@ -1,11 +1,11 @@
 const weights = {
-  work: 0.22,
-  parkingBenefit: 0.18,
-  parkingCapacity: 0.16,
-  access: 0.16,
-  price: 0.12,
-  lunch: 0.10,
-  capacity: 0.06
+  parkingBenefit: 0.28,
+  parkingCapacity: 0.24,
+  work: 0.16,
+  access: 0.12,
+  price: 0.08,
+  lunch: 0.08,
+  capacity: 0.04
 };
 
 const state = {
@@ -77,14 +77,38 @@ function initMap() {
   }).addTo(state.map).bindPopup("성복역 기준점");
 }
 
-function markerIcon(isTop) {
-  const color = isTop ? "#2563eb" : "#5f6c7b";
+function markerIcon(rank, parkingScore) {
+  const color = parkingScore >= 9 ? "#16805a" : rank <= 5 ? "#2563eb" : "#5f6c7b";
   return L.divIcon({
-    html: `<span style="display:block;width:14px;height:14px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25)"></span>`,
+    html: `<span class="ranked-marker" style="background:${color}">${rank}</span>`,
     className: "venue-marker",
-    iconSize: [18, 18],
-    iconAnchor: [9, 9]
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
   });
+}
+
+function mapPositions(venues) {
+  const groups = new Map();
+
+  for (const venue of venues) {
+    const key = `${venue.lat.toFixed(3)}:${venue.lng.toFixed(3)}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(venue.id);
+  }
+
+  return new Map(venues.map((venue) => {
+    const key = `${venue.lat.toFixed(3)}:${venue.lng.toFixed(3)}`;
+    const group = groups.get(key);
+    if (group.length === 1) return [venue.id, [venue.lat, venue.lng]];
+
+    const index = group.indexOf(venue.id);
+    const angle = (Math.PI * 2 * index) / group.length;
+    const radius = 0.0012;
+    return [venue.id, [
+      venue.lat + Math.sin(angle) * radius,
+      venue.lng + Math.cos(angle) * radius
+    ]];
+  }));
 }
 
 function fillFilters(venues) {
@@ -154,17 +178,21 @@ function renderInsights(venues) {
 function renderMap(venues) {
   for (const marker of state.markers) marker.remove();
   state.markers = [];
+  const positions = mapPositions(venues);
 
   venues.forEach((venue, index) => {
-    const marker = L.marker([venue.lat, venue.lng], { icon: markerIcon(index < 5) })
+    const rank = index + 1;
+    const parkingScore = (venue.scores.parkingBenefit + venue.scores.parkingCapacity) / 2;
+    const position = positions.get(venue.id);
+    const marker = L.marker(position, { icon: markerIcon(rank, parkingScore) })
       .addTo(state.map)
-      .bindPopup(`<strong>${index + 1}위 ${escapeHtml(venue.name)}</strong><br>${venue.overall.toFixed(1)}점 · ${escapeHtml(venue.area)}`);
+      .bindPopup(`<strong>${rank}위 ${escapeHtml(venue.name)}</strong><br>${venue.overall.toFixed(1)}점 · 주차 ${parkingScore.toFixed(1)}점<br>${escapeHtml(venue.parkingSummary)}`);
     state.markers.push(marker);
   });
 
   if (venues.length) {
     const group = L.featureGroup(state.markers);
-    state.map.fitBounds(group.getBounds().pad(0.18), { maxZoom: 13 });
+    state.map.fitBounds(group.getBounds().pad(0.14), { maxZoom: venues.length > 12 ? 11 : 13 });
   }
 }
 
@@ -186,6 +214,7 @@ function renderList(venues) {
     const card = document.createElement("article");
     card.className = "venue-card";
     const price = venue.americanoPrice ? `${venue.americanoPrice.toLocaleString()}원` : "확인필요";
+    const parkingScore = ((venue.scores.parkingBenefit + venue.scores.parkingCapacity) / 2).toFixed(1);
     const confidenceClass = venue.confidence === "검증됨" ? "good" : "warn";
     const sourceLinks = venue.sources.slice(0, 3).map((source, sourceIndex) =>
       `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">출처 ${sourceIndex + 1}</a>`
@@ -200,7 +229,7 @@ function renderList(venues) {
         </div>
         <div class="score">
           <strong>${venue.overall.toFixed(1)}</strong>
-          <span>종합</span>
+          <span>종합 · 주차 ${parkingScore}</span>
         </div>
       </div>
       <div class="tags">
