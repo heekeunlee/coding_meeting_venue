@@ -1,12 +1,15 @@
 const weights = {
-  parkingBenefit: 0.28,
-  parkingCapacity: 0.24,
-  work: 0.16,
-  access: 0.12,
-  price: 0.08,
-  lunch: 0.08,
+  parkingBenefit: 0.24,
+  parkingCapacity: 0.20,
+  weekendCalm: 0.16,
+  work: 0.14,
+  access: 0.10,
+  price: 0.06,
+  lunch: 0.06,
   capacity: 0.04
 };
+
+const mapLimit = 15;
 
 const state = {
   venues: [],
@@ -27,7 +30,8 @@ const els = {
   resultCount: document.getElementById("result-count"),
   bestWork: document.getElementById("best-work"),
   bestParking: document.getElementById("best-parking"),
-  bestPrice: document.getElementById("best-price")
+  bestPrice: document.getElementById("best-price"),
+  mapCount: document.getElementById("map-count")
 };
 
 function escapeHtml(value) {
@@ -62,7 +66,11 @@ function normalizeVenue(venue) {
 }
 
 function initMap() {
-  state.map = L.map("map", { zoomControl: true }).setView([37.2706, 127.0817], 11);
+  state.map = L.map("map", {
+    zoomControl: true,
+    preferCanvas: true,
+    scrollWheelZoom: false
+  }).setView([37.2706, 127.0817], 11);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: "&copy; OpenStreetMap"
@@ -178,21 +186,26 @@ function renderInsights(venues) {
 function renderMap(venues) {
   for (const marker of state.markers) marker.remove();
   state.markers = [];
-  const positions = mapPositions(venues);
+  const mapVenues = venues.slice(0, mapLimit);
+  const positions = mapPositions(mapVenues);
+  els.mapCount.textContent = `${mapVenues.length}/${venues.length}개 지도 표시`;
 
-  venues.forEach((venue, index) => {
+  mapVenues.forEach((venue, index) => {
     const rank = index + 1;
     const parkingScore = (venue.scores.parkingBenefit + venue.scores.parkingCapacity) / 2;
     const position = positions.get(venue.id);
     const marker = L.marker(position, { icon: markerIcon(rank, parkingScore) })
       .addTo(state.map)
-      .bindPopup(`<strong>${rank}위 ${escapeHtml(venue.name)}</strong><br>${venue.overall.toFixed(1)}점 · 주차 ${parkingScore.toFixed(1)}점<br>${escapeHtml(venue.parkingSummary)}`);
+      .bindPopup(`<strong>${rank}위 ${escapeHtml(venue.name)}</strong><br>${venue.overall.toFixed(1)}점 · 주차 ${parkingScore.toFixed(1)}점 · 혼잡회피 ${venue.scores.weekendCalm.toFixed(1)}점<br>${escapeHtml(venue.parkingSummary)}`);
     state.markers.push(marker);
   });
 
-  if (venues.length) {
+  if (mapVenues.length) {
     const group = L.featureGroup(state.markers);
-    state.map.fitBounds(group.getBounds().pad(0.14), { maxZoom: venues.length > 12 ? 11 : 13 });
+    state.map.fitBounds(group.getBounds().pad(0.2), { maxZoom: mapVenues.length > 8 ? 12 : 14 });
+    window.requestAnimationFrame(() => state.map.invalidateSize());
+  } else {
+    state.map.setView([37.2706, 127.0817], 11);
   }
 }
 
@@ -241,6 +254,7 @@ function renderList(venues) {
         ${scoreLine("작업", venue.scores.work)}
         ${scoreLine("주차혜택", venue.scores.parkingBenefit)}
         ${scoreLine("주차여유", venue.scores.parkingCapacity)}
+        ${scoreLine("혼잡회피", venue.scores.weekendCalm)}
         ${scoreLine("접근성", venue.scores.access)}
         ${scoreLine("가격", venue.scores.price)}
         ${scoreLine("점심", venue.scores.lunch)}

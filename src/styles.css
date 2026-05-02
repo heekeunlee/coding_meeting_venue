@@ -162,11 +162,14 @@ select {
   position: relative;
   overflow: hidden;
   margin-bottom: 16px;
+  isolation: isolate;
 }
 
 #map {
   width: 100%;
-  height: 420px;
+  height: min(56vh, 500px);
+  min-height: 380px;
+  background: #e7edf3;
 }
 
 .map-legend {
@@ -184,6 +187,7 @@ select {
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
+  max-width: calc(100% - 28px);
 }
 
 .pin {
@@ -214,6 +218,7 @@ select {
   color: #fff;
   font-size: 12px;
   font-weight: 900;
+  line-height: 1;
 }
 
 .insight-grid {

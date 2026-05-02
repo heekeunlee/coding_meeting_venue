@@ -22,7 +22,7 @@ const required = [
   "sources"
 ];
 
-const scoreKeys = ["work", "parkingBenefit", "parkingCapacity", "access", "lunch", "capacity"];
+const scoreKeys = ["work", "parkingBenefit", "parkingCapacity", "weekendCalm", "access", "lunch", "capacity"];
 const ids = new Set();
 const errors = [];
 
