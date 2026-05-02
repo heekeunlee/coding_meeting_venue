@@ -2,107 +2,298 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주말 코딩 모임 장소 Top 20 (성복역 10km 이내)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>주말 코딩 모임 베스트 장소</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; background-color: #f4f6f8; font-size: 14px; }
-        header { background-color: #1a1a1a; color: white; padding: 15px; text-align: center; }
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        #map { height: 450px; width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
-        th { background-color: #333; color: white; position: sticky; top: 0; }
-        .highlight { font-weight: bold; color: #d35400; }
-        .rank-top { background-color: #fff9c4; font-weight: bold; }
-        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.8em; font-weight: bold; }
-        .badge-free { background: #27ae60; color: white; }
-        .badge-info { background: #2980b9; color: white; }
+        :root {
+            --toss-blue: #3182f6;
+            --toss-gray-50: #f9fafb;
+            --toss-gray-100: #f2f4f6;
+            --toss-gray-600: #4e5968;
+            --toss-gray-800: #191f28;
+            --toss-white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--toss-gray-100);
+            color: var(--toss-gray-800);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: var(--toss-white);
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--toss-gray-100);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 14px;
+            color: var(--toss-gray-600);
+            margin: 4px 0 0 0;
+        }
+
+        .container {
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Criteria Section */
+        .section-card {
+            background: var(--toss-white);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .criteria-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .criteria-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: var(--toss-gray-600);
+        }
+
+        .criteria-item span {
+            width: 24px;
+            height: 24px;
+            background: var(--toss-gray-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 12px;
+            color: var(--toss-blue);
+            font-weight: bold;
+        }
+
+        /* Map Section */
+        #map {
+            height: 300px;
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            z-index: 1;
+        }
+
+        /* Venue Card */
+        .venue-card {
+            background: var(--toss-white);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+
+        .venue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .venue-rank {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--toss-blue);
+            margin-bottom: 4px;
+        }
+
+        .venue-name {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--toss-gray-800);
+        }
+
+        .venue-score {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--toss-blue);
+        }
+
+        .venue-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            background: var(--toss-gray-50);
+            color: var(--toss-gray-600);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .tag-parking {
+            background: #e8f3ff;
+            color: var(--toss-blue);
+        }
+
+        .venue-info {
+            font-size: 14px;
+            color: var(--toss-gray-600);
+            border-top: 1px solid var(--toss-gray-100);
+            padding-top: 12px;
+        }
+
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: var(--toss-gray-800);
+            color: white;
+            font-size: 12px;
+            margin-right: 6px;
+        }
+
+        .top-rank {
+            border: 2px solid var(--toss-blue);
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>주말 코딩 모임 장소 Top 20 (성복역 10km 이내 남부)</h1>
-        <p>무료주차 & 대규모 좌석 & 작업 환경 종합 분석</p>
+        <h1>주말 코딩 모임 장소</h1>
+        <p>성복역 10km 이내 남부 베스트 20</p>
     </header>
+
     <div class="container">
+        <!-- Criteria Card -->
+        <div class="section-card">
+            <div class="section-title">📍 선정 기준</div>
+            <ul class="criteria-list">
+                <li class="criteria-item"><span>1</span> 무료 주차 혜택 (시간당 비용 최소화)</li>
+                <li class="criteria-item"><span>2</span> 주차 공간의 풍부함 (주말 주차 용이성)</li>
+                <li class="criteria-item"><span>3</span> 노트북 작업 환경 (콘센트, 테이블 크기)</li>
+                <li class="criteria-item"><span>4</span> 실내 공간 규모 (좌석 수 다다익선)</li>
+                <li class="criteria-item"><span>5</span> 주변 식사 연계성 (모임 후 이동 최적)</li>
+            </ul>
+        </div>
+
+        <!-- Map -->
         <div id="map"></div>
-        
-        <div class="card">
-            <h2>🏆 코딩 모임 장소 추천 순위 (종합 20위)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>순위</th>
-                        <th>카페명</th>
-                        <th>유형</th>
-                        <th>주차 혜택</th>
-                        <th>좌석/환경</th>
-                        <th>총점</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body"></tbody>
-            </table>
+
+        <!-- Venue List -->
+        <div id="venue-list">
+            <!-- Cards will be populated here -->
         </div>
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         const venues = [
-            { name: '리드엑스 (ReadX)', type: '북카페', lat: 37.2474, lng: 127.0783, parking: '5시간 무료', info: '작업 특화, 콘센트 다수', score: 9.9 },
-            { name: '광교SK뷰레이크41F', type: '스타벅스', lat: 37.2888, lng: 127.0677, parking: '2~3시간 합산', info: '호수공원 뷰, 쾌적', score: 9.5 },
-            { name: '포레스트 아우팅스 기흥', type: '초대형', lat: 37.2260, lng: 127.1089, parking: '무제한 무료', info: '식물원 컨셉, 매우 넓음', score: 9.4 },
-            { name: '하이라이트', type: '베이커리', lat: 37.3032, lng: 127.0770, parking: '자체 주차장', info: '상현역 인근, 넓은 실내', score: 9.2 },
-            { name: '호수앉기', type: '베이커리', lat: 37.2516, lng: 127.1141, parking: '공영 4시간', info: '기흥호수 뷰, 4층 규모', score: 9.1 },
-            { name: '떼레노시떼 스페셜', type: '베이커리', lat: 37.2261, lng: 127.1090, parking: '넓은 자체주차', info: '고풍스러운 실내, 단체석', score: 9.0 },
-            { name: '어반리프', type: '베이커리', lat: 37.2397, lng: 127.1111, parking: '대형 주차장', info: '온실형 카페, 개방감', score: 8.9 },
-            { name: '르디투어', type: '베이커리', lat: 37.3121, lng: 127.0549, parking: '2시간 무료', info: '계단식 좌석, 건축물 우수', score: 8.8 },
-            { name: '용인보라DT점', type: '스타벅스', lat: 37.2561, lng: 127.1153, parking: '자체 주차장', info: '카공하기 무난함', score: 8.7 },
-            { name: '수원영통점', type: '스타벅스', lat: 37.2500, lng: 127.0700, parking: '빌딩 2시간', info: '영통역 중심 상권', score: 8.6 },
-            { name: '테라로사 기흥', type: '대형', lat: 37.2259, lng: 127.1088, parking: '리빙파워센터', info: '세련된 인테리어', score: 8.5 },
-            { name: '아리랑도원', type: '한옥베이커리', lat: 37.2262, lng: 127.1091, parking: '자체 주차', info: '이색적인 컨셉', score: 8.4 },
-            { name: '어반리', type: '베이커리', lat: 37.2264, lng: 127.1106, parking: '전용 주차', info: '빈티지 감성, 넓음', score: 8.3 },
-            { name: '동그란네모', type: '베이커리', lat: 37.2263, lng: 127.1092, parking: '전용 2곳', info: '고매동 인기 카페', score: 8.2 },
-            { name: '용인마북DT점', type: '스타벅스', lat: 37.2966, lng: 127.1182, parking: 'DT 주차', info: '조용한 분위기', score: 8.1 },
-            { name: '용인구성DT점', type: '스타벅스', lat: 37.3002, lng: 127.1068, parking: 'DT 주차', info: '접근성 좋음', score: 8.0 },
-            { name: '용인흥덕DT점', type: '스타벅스', lat: 37.2762, lng: 127.0668, parking: 'DT 주차', info: '흥덕지구 중심', score: 7.9 },
-            { name: '책발전소 광교', type: '북카페', lat: 37.2870, lng: 127.0590, parking: '앨리웨이', info: '독서/작업 최적', score: 7.8 },
-            { name: '타임투비', type: '대형', lat: 37.3150, lng: 127.0750, parking: '전용 주차', info: '성복동 숲뷰, 공간분리', score: 7.7 },
-            { name: '라임그라스', type: '대형', lat: 37.2550, lng: 127.1300, parking: '넓은 정원', info: '노트북존 운영', score: 7.6 }
+            { name: '리드엑스 (ReadX)', type: '북카페', lat: 37.2474, lng: 127.0783, parking: '5시간 무료', info: '작업 특화, 콘센트 풍부, 조용한 분위기', score: 9.9 },
+            { name: '광교SK뷰레이크41F', type: '스타벅스', lat: 37.2888, lng: 127.0677, parking: '2~3시간 합산', info: '호수공원 전망, 쾌적한 빌딩 주차', score: 9.5 },
+            { name: '포레스트 아우팅스 기흥', type: '초대형', lat: 37.2260, lng: 127.1089, parking: '무제한 무료', info: '식물원 컨셉, 좌석수 압도적, 쾌적', score: 9.4 },
+            { name: '하이라이트', type: '베이커리', lat: 37.3032, lng: 127.0770, parking: '자체 주차장', info: '상현역 인근, 층고 높음, 브런치 맛집', score: 9.2 },
+            { name: '호수앉기', type: '베이커리', lat: 37.2516, lng: 127.1141, parking: '공영 4시간', info: '기흥호수 뷰, 4층 규모, 주차 강점', score: 9.1 },
+            { name: '떼레노시떼 스페셜', type: '베이커리', lat: 37.2261, lng: 127.1090, parking: '넓은 자체주차', info: '고풍스러운 실내, 단체석 풍부', score: 9.0 },
+            { name: '어반리프', type: '베이커리', lat: 37.2397, lng: 127.1111, parking: '대형 주차장', info: '온실형 카페, 시원한 개방감', score: 8.9 },
+            { name: '르디투어', type: '베이커리', lat: 37.3121, lng: 127.0549, parking: '2시간 무료', info: '건축물 우수, 독특한 좌석 배치', score: 8.8 },
+            { name: '스타벅스 용인보라DT', type: '스타벅스', lat: 37.2561, lng: 127.1153, parking: '자체 주차장', info: '안정적인 작업 환경, 주차 무난', score: 8.7 },
+            { name: '스타벅스 수원영통점', type: '스타벅스', lat: 37.2500, lng: 127.0700, parking: '빌딩 2시간', info: '영통역 중심 상권, 식당가 인접', score: 8.6 },
+            { name: '테라로사 기흥', type: '대형', lat: 37.2259, lng: 127.1088, parking: '리빙파워센터', info: '공간 디자인 우수, 세련된 분위기', score: 8.5 },
+            { name: '아리랑도원', type: '한옥카페', lat: 37.2262, lng: 127.1091, parking: '자체 주차', info: '이색적인 컨셉, 다양한 디저트', score: 8.4 },
+            { name: '어반리', type: '베이커리', lat: 37.2264, lng: 127.1106, parking: '전용 주차', info: '빈티지한 대형 공간', score: 8.3 },
+            { name: '동그란네모', type: '베이커리', lat: 37.2263, lng: 127.1092, parking: '전용 2곳', info: '샌드위치 맛집, 고매동 핫플', score: 8.2 },
+            { name: '스타벅스 용인마북DT', type: '스타벅스', lat: 37.2966, lng: 127.1182, parking: 'DT 주차', info: '비교적 한적한 분위기', score: 8.1 },
+            { name: '스타벅스 용인구성DT', type: '스타벅스', lat: 37.3002, lng: 127.1068, parking: 'DT 주차', info: '대로변 위치, 접근성 우수', score: 8.0 },
+            { name: '스타벅스 용인흥덕DT', type: '스타벅스', lat: 37.2762, lng: 127.0668, parking: 'DT 주차', info: '흥덕지구 중심 상가 인접', score: 7.9 },
+            { name: '책발전소 광교', type: '북카페', lat: 37.2870, lng: 127.0590, parking: '앨리웨이', info: '조용한 작업 및 독서 최적', score: 7.8 },
+            { name: '타임투비', type: '대형', lat: 37.3150, lng: 127.0750, parking: '전용 주차', info: '성복동 숲뷰, 차분한 분위기', score: 7.7 },
+            { name: '라임그라스', type: '대형', lat: 37.2550, lng: 127.1300, parking: '넓은 주차', info: '노트북 전용 구역 운영', score: 7.6 }
         ];
 
+        // Sort
         venues.sort((a, b) => b.score - a.score);
 
-        const tbody = document.getElementById('table-body');
+        // Populate List
+        const listContainer = document.getElementById('venue-list');
         venues.forEach((v, i) => {
-            const tr = document.createElement('tr');
-            if (i < 3) tr.className = 'rank-top';
-            tr.innerHTML = `
-                <td>${i + 1}</td>
-                <td class="highlight">${v.name}</td>
-                <td>${v.type}</td>
-                <td><span class="badge badge-free">${v.parking}</span></td>
-                <td><span class="badge badge-info">${v.info}</span></td>
-                <td class="highlight">${v.score}</td>
+            const card = document.createElement('div');
+            card.className = `venue-card ${i < 3 ? 'top-rank' : ''}`;
+            
+            card.innerHTML = `
+                <div class="venue-header">
+                    <div>
+                        <div class="venue-rank">${i + 1}위</div>
+                        <h2 class="venue-name">${v.name}</h2>
+                    </div>
+                    <div class="venue-score">${v.score}점</div>
+                </div>
+                <div class="venue-tags">
+                    <span class="tag">${v.type}</span>
+                    <span class="tag tag-parking">🅿️ ${v.parking}</span>
+                </div>
+                <div class="venue-info">
+                    ${v.info}
+                </div>
             `;
-            tbody.appendChild(tr);
+            listContainer.appendChild(card);
         });
 
-        const map = L.map('map').setView([37.2600, 127.0850], 12);
+        // Map setup
+        const map = L.map('map', { zoomControl: false }).setView([37.2700, 127.0850], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        L.marker([37.3134, 127.0725]).addTo(map).bindPopup('<b>성복역 (기준점)</b>');
+        const seongbokMarker = L.circleMarker([37.3134, 127.0725], {
+            radius: 8,
+            fillColor: "#3182f6",
+            color: "#fff",
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 1
+        }).addTo(map).bindPopup('<b>성복역 (기준점)</b>');
 
-        const customIcon = (rank) => L.icon({
-            iconUrl: rank < 3 ? 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png' : 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+        const cafeIcon = (isTop) => L.divIcon({
+            html: `<div style="background-color: ${isTop ? '#3182f6' : '#4e5968'}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
+            className: 'custom-icon',
+            iconSize: [12, 12]
         });
 
         venues.forEach((v, i) => {
-            L.marker([v.lat, v.lng], {icon: customIcon(i)}).addTo(map)
-                .bindPopup(`<b>${i+1}위: ${v.name}</b><br>주차: ${v.parking}<br>${v.info}`);
+            L.marker([v.lat, v.lng], { icon: cafeIcon(i < 3) }).addTo(map)
+                .bindPopup(`<b>${i+1}위: ${v.name}</b><br>주차: ${v.parking}`);
         });
     </script>
 </body>
