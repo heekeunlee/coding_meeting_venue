@@ -1,415 +1,109 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>주말 코딩 모임 베스트 장소</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        :root {
-            --toss-blue: #3182f6;
-            --toss-gray-50: #f9fafb;
-            --toss-gray-100: #f2f4f6;
-            --toss-gray-200: #e5e8eb;
-            --toss-gray-600: #4e5968;
-            --toss-gray-800: #191f28;
-            --toss-white: #ffffff;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--toss-gray-100);
-            color: var(--toss-gray-800);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        header {
-            background-color: var(--toss-white);
-            padding: 24px 20px;
-            border-bottom: 1px solid var(--toss-gray-100);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header h1 {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: -0.5px;
-        }
-
-        header p {
-            font-size: 14px;
-            color: var(--toss-gray-600);
-            margin: 4px 0 0 0;
-        }
-
-        .container {
-            padding: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-card {
-            background: var(--toss-white);
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-        }
-
-        .criteria-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .criteria-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: var(--toss-gray-600);
-        }
-
-        .criteria-item span {
-            width: 24px;
-            height: 24px;
-            background: var(--toss-gray-100);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            font-size: 11px;
-            color: var(--toss-blue);
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        #map {
-            height: 300px;
-            width: 100%;
-            border-radius: 20px;
-            margin-bottom: 16px;
-            z-index: 1;
-        }
-
-        .venue-card {
-            background: var(--toss-white);
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 12px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .venue-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .venue-rank {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--toss-blue);
-            margin-bottom: 4px;
-        }
-
-        .venue-name {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 0;
-            color: var(--toss-gray-800);
-            word-break: keep-all;
-        }
-
-        .venue-score {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--toss-blue);
-            margin-left: 10px;
-        }
-
-        .venue-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 16px;
-        }
-
-        .tag {
-            background: var(--toss-gray-50);
-            color: var(--toss-gray-600);
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .tag-blue { background: #e8f3ff; color: var(--toss-blue); }
-
-        .venue-description {
-            font-size: 14px;
-            color: var(--toss-gray-800);
-            background: var(--toss-gray-50);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
-
-        .score-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            border-top: 1px solid var(--toss-gray-100);
-            padding-top: 16px;
-        }
-
-        .score-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .score-label {
-            font-size: 12px;
-            color: var(--toss-gray-600);
-            margin-bottom: 4px;
-        }
-
-        .score-value-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .score-num {
-            font-size: 13px;
-            font-weight: 600;
-            min-width: 18px;
-        }
-
-        .score-bar-bg {
-            flex: 1;
-            height: 4px;
-            background: var(--toss-gray-200);
-            border-radius: 2px;
-            margin-left: 8px;
-            overflow: hidden;
-        }
-
-        .score-bar-fill {
-            height: 100%;
-            background: var(--toss-blue);
-            border-radius: 2px;
-        }
-
-        .top-rank {
-            border: 2px solid var(--toss-blue);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>용인·수원 코딩 소모임 장소 비교</title>
+  <meta name="description" content="용인·수원 일대 주말 코딩 소모임 장소를 주차, 가격, 노트북 작업성, 접근성, 점심 연계 기준으로 비교합니다.">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQnyrKpi8tAStZD3DZbNCzK8x47z4Ec=" crossorigin="">
+  <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
-    <header>
-        <h1>주말 코딩 모임 장소</h1>
-        <p>성복역 10km 이내 남부 베스트 20</p>
-    </header>
-
-    <div class="container">
-        <div class="section-card">
-            <div class="section-title">📍 선정 및 평가 기준</div>
-            <ul class="criteria-list">
-                <li class="criteria-item"><span>1</span> <b>무료 주차 혜택</b> (시간당 비용 최소화)</li>
-                <li class="criteria-item"><span>2</span> <b>주차 공간 여유</b> (주말 만차 확률 낮음)</li>
-                <li class="criteria-item"><span>3</span> <b>작업 환경</b> (콘센트 풍부, 넓은 테이블)</li>
-                <li class="criteria-item"><span>4</span> <b>공간 규모</b> (좌석 수, 단체 모임 용이성)</li>
-                <li class="criteria-item"><span>5</span> <b>식사 연계</b> (주변 맛집 접근성)</li>
-                <li class="criteria-item"><span>6</span> <b>이동 편의성</b> (수지/망포/매탄/신갈 자차 동선)</li>
-            </ul>
-        </div>
-
-        <div id="map"></div>
-        <div id="venue-list"></div>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Weekend Coding Venue Index</p>
+      <h1>용인·수원 코딩 소모임 장소 비교</h1>
+      <p class="summary">주차, 가격, 노트북 작업성, 접근성, 점심 연계를 같은 산식으로 비교합니다.</p>
     </div>
+    <div class="header-stat" aria-label="후보 장소 수">
+      <span id="venue-count">0</span>
+      <small>후보</small>
+    </div>
+  </header>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        const venues = [
-            { 
-                name: '리드엑스 (ReadX)', type: '북카페', lat: 37.2474, lng: 127.0783, parking: '5시간 무료', score: 9.8,
-                desc: '영통/망포에서 매우 가깝고 신갈IC와도 인접한 최적의 위치입니다. 북카페 특유의 정숙한 분위기와 5시간이라는 파격적인 주차 지원이 압권입니다.',
-                scores: { "주차혜택": 10, "주차여유": 8, "작업환경": 10, "공간규모": 8, "식사연계": 8, "이동편의": 10 }
-            },
-            { 
-                name: '광교SK뷰레이크41F', type: '스타벅스', lat: 37.2888, lng: 127.0677, parking: '2~3시간 합산', score: 9.6,
-                desc: '수지/광교에서 접근성이 가장 좋으며, 대형 빌딩 주차장을 공유해 주차가 쾌적합니다. 41층의 탁 트인 호수 뷰는 모임의 몰입도를 높여줍니다.',
-                scores: { "주차혜택": 8, "주차여유": 10, "작업환경": 9, "공간규모": 8, "식사연계": 10, "이동편의": 9 }
-            },
-            { 
-                name: '포레스트 아우팅스 기흥', type: '초대형', lat: 37.2260, lng: 127.1089, parking: '무제한 무료', score: 9.3,
-                desc: '수원 신갈/기흥 지역에서 이동이 매우 편합니다. 압도적인 규모로 주말에도 좌석 확보가 비교적 쉽고, 주차 걱정이 전혀 없는 것이 최대 장점입니다.',
-                scores: { "주차혜택": 10, "주차여유": 10, "작업환경": 7, "공간규모": 10, "식사연계": 8, "이동편의": 9 }
-            },
-            { 
-                name: '하이라이트', type: '베이커리', lat: 37.3032, lng: 127.0770, parking: '3시간 무료', score: 9.2,
-                desc: '성복역(수지) 바로 인근이며 용구대로와 연결되어 망포/매탄에서도 오기 좋습니다. 층고가 높아 개방감이 좋고 브런치 메뉴가 훌륭합니다.',
-                scores: { "주차혜택": 9, "주차여유": 9, "작업환경": 8, "공간규모": 9, "식사연계": 9, "이동편의": 10 }
-            },
-            { 
-                name: '호수앉기', type: '베이커리', lat: 37.2516, lng: 127.1141, parking: '공영 4시간', score: 9.0,
-                desc: '신갈/영통에서 가깝습니다. 공영주차장 4시간 무료라는 강력한 주차 메리트가 있으며, 4층 규모로 공간이 넓어 단체 모임에 적합합니다.',
-                scores: { "주차혜택": 10, "주차여유": 8, "작업환경": 8, "공간규모": 10, "식사연계": 8, "이동편의": 8 }
-            },
-            { 
-                name: '떼레노시떼 스페셜', type: '베이커리', lat: 37.2261, lng: 127.1090, parking: '전용 대형', score: 8.8,
-                desc: '기흥 주택가 안쪽이라 주말에도 상대적으로 한적한 편입니다. 넓은 전용 주차장과 고풍스러운 실내 분위기가 특징입니다.',
-                scores: { "주차혜택": 8, "주차여유": 9, "작업환경": 8, "공간규모": 9, "식사연계": 7, "이동편의": 8 }
-            },
-            { 
-                name: '어반리프', type: '베이커리', lat: 37.2397, lng: 127.1111, parking: '전용 대형', score: 8.7,
-                desc: '망포/신갈에서 접근성이 좋습니다. 온실형 대형 카페로 시야가 탁 트여 있으며, 주차 공간이 매우 넓어 차량 이동 시 편리합니다.',
-                scores: { "주차혜택": 8, "주차여유": 10, "작업환경": 6, "공간규모": 10, "식사연계": 7, "이동편의": 9 }
-            },
-            { 
-                name: '르디투어', type: '베이커리', lat: 37.3121, lng: 127.0549, parking: '2시간 무료', score: 8.6,
-                desc: '수지/광교 거주자에게 최적의 위치입니다. 유명 건축가가 설계한 공간미가 뛰어나며 독특한 좌석 배치가 영감을 줍니다.',
-                scores: { "주차혜택": 7, "주차여유": 7, "작업환경": 9, "공간규모": 9, "식사연계": 8, "이동편의": 10 }
-            },
-            { 
-                name: '스타벅스 용인보라DT', type: '스타벅스', lat: 37.2561, lng: 127.1153, parking: '자체 주차', score: 8.5,
-                desc: '신갈IC 근처라 이동이 편합니다. 스타벅스 특유의 안정적인 작업 환경을 제공하며 DT 매장 중 주차 공간이 비교적 넉넉합니다.',
-                scores: { "주차혜택": 8, "주차여유": 8, "작업환경": 9, "공간규모": 7, "식사연계": 7, "이동편의": 9 }
-            },
-            { 
-                name: '스타벅스 수원영통점', type: '스타벅스', lat: 37.2500, lng: 127.0700, parking: '2시간 무료', score: 8.5,
-                desc: '망포/매탄 지역 모임 시 최고의 접근성을 가집니다. 훼미리타워 대형 주차장 이용이 가능하며 주변에 식당가가 밀집해 있습니다.',
-                scores: { "주차혜택": 9, "주차여유": 8, "작업환경": 9, "공간규모": 7, "식사연계": 10, "이동편의": 8 }
-            },
-            { 
-                name: '테라로사 기흥', type: '대형', lat: 37.2259, lng: 127.1088, parking: '센터 주차', score: 8.4,
-                desc: '기흥 리빙파워센터 내에 있어 주차가 매우 쉽고 망포/신갈에서 가깝습니다. 세련된 공간 디자인과 커피 품질이 보장됩니다.',
-                scores: { "주차혜택": 8, "주차여유": 10, "작업환경": 8, "공간규모": 8, "식사연계": 8, "이동편의": 7 }
-            },
-            { 
-                name: '아리랑도원', type: '한옥카페', lat: 37.2262, lng: 127.1091, parking: '자체 주차', score: 8.3,
-                desc: '남사 지역이지만 기흥에서 차량으로 금방 도착합니다. 한국적인 전통 테마가 독특하며 공간이 매우 넓어 쾌적합니다.',
-                scores: { "주차혜택": 7, "주차여유": 9, "작업환경": 6, "공간규모": 10, "식사연계": 7, "이동편의": 7 }
-            },
-            { 
-                name: '어반리 본점', type: '베이커리', lat: 37.2264, lng: 127.1106, parking: '자체 주차', score: 8.2,
-                desc: '기흥단지 초입이라 신갈에서 오기 편합니다. 빈티지한 대형 공간으로 팀 단위로 모여서 대화하며 코딩하기 좋습니다.',
-                scores: { "주차혜택": 7, "주차여유": 8, "작업환경": 8, "공간규모": 9, "식사연계": 7, "이동편의": 8 }
-            },
-            { 
-                name: '동그란네모', type: '베이커리', lat: 37.2263, lng: 127.1092, parking: '전용 2곳', score: 8.1,
-                desc: '기흥 이케아 근처로 망포에서 가깝습니다. 따뜻한 우드톤 분위기로 집중력이 필요한 작업에 어울리는 조용한 대형 카페입니다.',
-                scores: { "주차혜택": 7, "주차여유": 9, "작업환경": 8, "공간규모": 7, "식사연계": 7, "이동편의": 8 }
-            },
-            { 
-                name: '스타벅스 용인마북DT', type: '스타벅스', lat: 37.2966, lng: 127.1182, parking: 'DT 주차', score: 8.0,
-                desc: '용구대로변에 위치해 수지와 신갈 사이 이동이 편합니다. 다른 지점에 비해 주말에도 비교적 조용한 작업 환경을 갖췄습니다.',
-                scores: { "주차혜택": 8, "주차여유": 7, "작업환경": 9, "공간규모": 7, "식사연계": 7, "이동편의": 8 }
-            },
-            { 
-                name: '스타벅스 용인구성DT', type: '스타벅스', lat: 37.3002, lng: 127.1068, parking: 'DT 주차', score: 7.9,
-                desc: '구성역 인근 거주자 모임에 최적입니다. 대로변 접근성이 우수하며 표준적인 스타벅스의 편리함을 제공합니다.',
-                scores: { "주차혜택": 8, "주차여유": 7, "작업환경": 8, "공간규모": 7, "식사연계": 8, "이동편의": 7 }
-            },
-            { 
-                name: '스타벅스 용인흥덕DT', type: '스타벅스', lat: 37.2762, lng: 127.0668, parking: 'DT 주차', score: 7.8,
-                desc: '매탄/광교에서 가장 가까운 스타벅스 DT입니다. 흥덕지구 중심 상가와 인접해 모임 후 식사 장소로 이동하기 좋습니다.',
-                scores: { "주차혜택": 8, "주차여유": 7, "작업환경": 8, "공간규모": 7, "식사연계": 9, "이동편의": 8 }
-            },
-            { 
-                name: '책발전소 광교', type: '북카페', lat: 37.2870, lng: 127.0590, parking: '앨리웨이', score: 7.7,
-                desc: '수지/광교에서 가깝습니다. 앨리웨이 내 위치해 주차가 보장되며, 무엇보다 노트북 작업과 독서에 가장 최적화된 분위기입니다.',
-                scores: { "주차혜택": 7, "주차여유": 7, "작업환경": 10, "공간규모": 6, "식사연계": 10, "이동편의": 6 }
-            },
-            { 
-                name: '타임투비', type: '대형', lat: 37.3150, lng: 127.0750, parking: '전용 주차', score: 7.6,
-                desc: '성복역(수지) 핵심 위치입니다. 건축미가 뛰어나 분위기 있는 모임이 가능하며 층별로 공간이 분리되어 있어 쾌적합니다.',
-                scores: { "주차혜택": 7, "주차여유": 8, "작업환경": 7, "공간규모": 9, "식사연계": 7, "이동편의": 7 }
-            },
-            { 
-                name: '라임그라스', type: '대형', lat: 37.2550, lng: 127.1300, parking: '넓은 주차', score: 7.5,
-                desc: '신갈에서 차량 이동 시 금방 도달합니다. 넓은 정원이 있어 휴식과 병행한 모임에 좋으며 별도의 노트북 존을 운영합니다.',
-                scores: { "주차혜택": 7, "주차여유": 9, "작업환경": 8, "공간규모": 8, "식사연계": 6, "이동편의": 6 }
-            }
-        ];
+  <main class="layout">
+    <section class="panel filters" aria-label="검색 및 필터">
+      <div class="search-row">
+        <label for="search">검색</label>
+        <input id="search" type="search" placeholder="장소명, 지역, 특징">
+      </div>
 
-        venues.sort((a, b) => b.score - a.score);
+      <div class="control-grid">
+        <label>
+          지역
+          <select id="area-filter">
+            <option value="all">전체</option>
+          </select>
+        </label>
+        <label>
+          유형
+          <select id="type-filter">
+            <option value="all">전체</option>
+          </select>
+        </label>
+        <label>
+          정렬
+          <select id="sort-by">
+            <option value="overall">종합점수</option>
+            <option value="parking">주차</option>
+            <option value="work">노트북 작업</option>
+            <option value="price">아메리카노 가격</option>
+            <option value="access">접근성</option>
+          </select>
+        </label>
+      </div>
 
-        const listContainer = document.getElementById('venue-list');
+      <div class="toggle-row">
+        <label><input id="free-parking-only" type="checkbox"> 무료/지원 주차만</label>
+        <label><input id="work-friendly-only" type="checkbox"> 작업 적합 8점 이상</label>
+        <label><input id="verified-only" type="checkbox"> 검증 정보 우선</label>
+      </div>
+    </section>
 
-        venues.forEach((v, i) => {
-            const card = document.createElement('div');
-            card.className = `venue-card ${i < 3 ? 'top-rank' : ''}`;
-            
-            let scoreHtml = '';
-            for (const [label, s] of Object.entries(v.scores)) {
-                scoreHtml += `
-                    <div class="score-item">
-                        <span class="score-label">${label}</span>
-                        <div class="score-value-container">
-                            <span class="score-num">${s}</span>
-                            <div class="score-bar-bg"><div class="score-bar-fill" style="width: ${s*10}%"></div></div>
-                        </div>
-                    </div>
-                `;
-            }
+    <section class="map-shell" aria-label="장소 지도">
+      <div id="map"></div>
+      <div class="map-legend">
+        <span><i class="pin best"></i>상위권</span>
+        <span><i class="pin normal"></i>후보</span>
+        <span><i class="pin base"></i>성복역 기준</span>
+      </div>
+    </section>
 
-            card.innerHTML = `
-                <div class="venue-header">
-                    <div style="flex: 1; padding-right: 10px;">
-                        <div class="venue-rank">${i + 1}위</div>
-                        <h2 class="venue-name">${v.name}</h2>
-                    </div>
-                    <div class="venue-score">${v.score.toFixed(1)}</div>
-                </div>
-                <div class="venue-tags">
-                    <span class="tag tag-blue">${v.type}</span>
-                    <span class="tag">🅿️ ${v.parking}</span>
-                </div>
-                <div class="venue-description">
-                    ${v.desc}
-                </div>
-                <div class="score-details">
-                    ${scoreHtml}
-                </div>
-            `;
-            listContainer.appendChild(card);
-        });
+    <section class="insight-grid" aria-label="추천 요약">
+      <article>
+        <span class="metric-label">주말 장시간 작업</span>
+        <strong id="best-work">-</strong>
+      </article>
+      <article>
+        <span class="metric-label">주차 스트레스 최소</span>
+        <strong id="best-parking">-</strong>
+      </article>
+      <article>
+        <span class="metric-label">가성비 우선</span>
+        <strong id="best-price">-</strong>
+      </article>
+    </section>
 
-        const map = L.map('map', { zoomControl: false }).setView([37.2700, 127.0850], 12);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    <section class="method">
+      <h2>평가 방식</h2>
+      <p>종합점수는 노트북 작업성 22%, 주차 혜택 18%, 주차 여유 16%, 접근성 16%, 가격 12%, 점심 연계 10%, 좌석 규모 6%로 계산합니다. 공개 정보가 부족한 항목은 보수 추정으로 표시했습니다.</p>
+    </section>
 
-        L.circleMarker([37.3134, 127.0725], { radius: 8, fillColor: "#3182f6", color: "#fff", weight: 2, opacity: 1, fillOpacity: 1 }).addTo(map);
+    <section>
+      <div class="list-header">
+        <h2>후보 리스트</h2>
+        <span id="result-count">0개 표시</span>
+      </div>
+      <div id="venue-list" class="venue-list"></div>
+    </section>
+  </main>
 
-        const cafeIcon = (isTop) => L.divIcon({
-            html: `<div style="background-color: ${isTop ? '#3182f6' : '#4e5968'}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
-            className: 'custom-icon', iconSize: [12, 12]
-        });
+  <footer class="app-footer">
+    <p>가격·주차 정책은 2026-05-02 기준 공개 웹 정보와 리뷰 기반입니다. 방문 전 매장 공지와 지도 앱을 재확인하세요.</p>
+  </footer>
 
-        venues.forEach((v, i) => {
-            L.marker([v.lat, v.lng], { icon: cafeIcon(i < 3) }).addTo(map).bindPopup(`<b>${i+1}위: ${v.name}</b>`);
-        });
-    </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="src/app.js"></script>
 </body>
 </html>
