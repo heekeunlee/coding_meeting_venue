@@ -113,6 +113,7 @@
             margin-bottom: 12px;
             display: flex;
             flex-direction: column;
+            box-sizing: border-box;
         }
 
         .venue-header {
@@ -164,7 +165,6 @@
             color: var(--toss-blue);
         }
 
-        /* Detailed Scores Styling */
         .score-details {
             background: var(--toss-gray-50);
             border-radius: 12px;
@@ -204,15 +204,23 @@
         }
 
         .venue-link {
-            display: inline-block;
+            display: block;
+            width: 100%;
             background: var(--toss-blue);
             color: white;
             text-align: center;
-            padding: 12px;
+            padding: 14px 0;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
+            box-sizing: border-box;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .venue-link:active {
+            opacity: 0.8;
         }
 
         .top-rank {
@@ -298,7 +306,7 @@
             { 
                 name: '테라로사 기흥', type: '대형', lat: 37.2259, lng: 127.1088, parking: '센터 주차', score: 8.5,
                 scores: [8, 10, 8, 8, 8], 
-                blog: 'http://www.livingpowercenter.com' 
+                blog: 'https://www.livingpowercenter.com' 
             },
             { 
                 name: '아리랑도원', type: '한옥카페', lat: 37.2262, lng: 127.1091, parking: '자체 주차', score: 8.4,
@@ -333,7 +341,7 @@
             { 
                 name: '책발전소 광교', type: '북카페', lat: 37.2870, lng: 127.0590, parking: '앨리웨이', score: 7.8,
                 scores: [7, 7, 9, 6, 9], 
-                blog: 'http://www.alleyway.co.kr' 
+                blog: 'https://www.alleyway.co.kr' 
             },
             { 
                 name: '타임투비', type: '대형', lat: 37.3150, lng: 127.0750, parking: '전용 주차', score: 7.7,
@@ -382,7 +390,7 @@
                     <span class="tag tag-parking">🅿️ ${v.parking}</span>
                 </div>
                 <div class="score-details">${scoreHtml}</div>
-                <a href="${v.blog}" target="_blank" class="venue-link">상세 정보 및 블로그 보기</a>
+                <a href="${v.blog}" target="_blank" rel="noopener noreferrer" class="venue-link">상세 정보 및 블로그 보기</a>
             `;
             listContainer.appendChild(card);
         });
