@@ -3,132 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주말 코딩 모임 장소 추천 (성복역 반경 5km)</title>
+    <title>주말 코딩 모임 장소 추천 (성복역 10km 이내 남부)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; background-color: #f4f6f8; }
         header { background-color: #00704a; color: white; padding: 20px; text-align: center; }
-        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-        #map { height: 400px; width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 20px; }
+        #map { height: 450px; width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
         .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .venue { border-left: 5px solid #00704a; padding-left: 15px; margin-bottom: 20px; }
-        .venue h3 { color: #00704a; margin-top: 0; }
-        .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
-        .stat-badge { background: #e2f1e8; color: #00704a; padding: 5px 10px; border-radius: 15px; font-size: 0.9em; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-        th { background-color: #f8f9fa; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #00704a; color: white; }
         .highlight { font-weight: bold; color: #00704a; }
+        .rank-1 { background-color: #fff9c4; }
+        .rank-2 { background-color: #f1f8e9; }
+        .rank-3 { background-color: #e3f2fd; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.8em; font-weight: bold; }
+        .badge-free { background: #4caf50; color: white; }
+        .badge-large { background: #2196f3; color: white; }
     </style>
 </head>
 <body>
     <header>
-        <h1>주말 코딩 소모임 장소 추천 (성복역 5km 이내)</h1>
-        <p>수지 성복역 인근 스타벅스 중 주차, 작업 환경, 식사 연계를 고려한 최적의 장소 Top 3</p>
+        <h1>주말 코딩 모임 장소 (성복역 10km 이내 남부)</h1>
+        <p>무료주차 & 대규모 주차장 우선순위 분석 결과</p>
     </header>
     <div class="container">
         <div id="map"></div>
         
         <div class="card">
-            <h2>🏆 선정 기준 및 분석 결과</h2>
-            <p><strong>선정 기준:</strong> 1. 무료주차 여부 2. 주차 대수 3. 주말 혼잡도 4. 노트북 작업 환경 (테이블 수) 5. 주변 식사 연계성</p>
+            <h2>📊 스타벅스 지점별 정량 분석 (주차 최우선)</h2>
+            <p style="font-size: 0.9em; color: #666;">*성복역보다 위도가 낮은(남쪽) 수원/용인 지점 대상</p>
             <table>
-                <tr>
-                    <th>순위</th>
-                    <th>지점명</th>
-                    <th>주차 대수</th>
-                    <th>무료 주차</th>
-                    <th>주말 혼잡도</th>
-                    <th>노트북 환경</th>
-                    <th>식사 연계</th>
-                    <th>총점 (10점)</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="highlight">용인신봉DT점</td>
-                    <td>우수 (15~20대)</td>
-                    <td>1만 원/1시간</td>
-                    <td>보통~혼잡</td>
-                    <td>우수</td>
-                    <td>매우 우수 (외식타운)</td>
-                    <td><strong>9.0</strong></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="highlight">용인상현DT점</td>
-                    <td>보통</td>
-                    <td>1만 원/1시간</td>
-                    <td>혼잡 (오전 추천)</td>
-                    <td>최상 (2층 대형테이블)</td>
-                    <td>우수</td>
-                    <td><strong>8.5</strong></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="highlight">용인보정DT점</td>
-                    <td>우수 (23대)</td>
-                    <td>1만 원/1시간</td>
-                    <td>혼잡</td>
-                    <td>우수</td>
-                    <td>우수 (카페거리)</td>
-                    <td><strong>8.0</strong></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>순위</th>
+                        <th>지점명</th>
+                        <th>주차 대수</th>
+                        <th>무료 주차 혜택</th>
+                        <th>노트북 환경</th>
+                        <th>식사 연계</th>
+                        <th>총점</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Data will be populated by JS -->
+                </tbody>
             </table>
         </div>
 
         <div class="card">
-            <h2>📍 Top 3 지점 상세 정보</h2>
-            
-            <div class="venue">
-                <h3>1. 스타벅스 용인신봉DT점 (강력 추천)</h3>
-                <div class="stats">
-                    <span class="stat-badge">🚗 주차 15~20대</span>
-                    <span class="stat-badge">💻 작업하기 좋음</span>
-                    <span class="stat-badge">🍲 신봉외식타운 인접</span>
-                </div>
-                <p>수지구 내에서 자체 주차장 규모가 가장 큰 편에 속합니다. 주말에도 상대적으로 주차 공간 확보가 용이하며, 바로 인근에 신봉동 외식타운이 있어 코딩 모임 후 단체로 점심식사를 하러 이동하기에 최적의 위치입니다. 매장 내부도 넓어 노트북 작업에 무리가 없습니다.</p>
-            </div>
-
-            <div class="venue">
-                <h3>2. 스타벅스 용인상현DT점</h3>
-                <div class="stats">
-                    <span class="stat-badge">🚗 기본 DT 주차</span>
-                    <span class="stat-badge">💻 2층 대형 공유 테이블</span>
-                    <span class="stat-badge">🍲 주변 맛집 다수</span>
-                </div>
-                <p>2층에 콘센트가 구비된 대형 롱테이블이 있어 여러 명이 모여서 각자 노트북을 펴고 작업하는 코딩 모임 특성상 최고의 환경을 제공합니다. 다만 주말 오후에는 자리 경쟁이 치열하므로 가급적 오전 시간에 모이는 것을 추천합니다. 상현동 인근 빵집(본누벨) 및 식당 연계가 좋습니다.</p>
-            </div>
-
-            <div class="venue">
-                <h3>3. 스타벅스 용인보정DT점</h3>
-                <div class="stats">
-                    <span class="stat-badge">🚗 주차 23대</span>
-                    <span class="stat-badge">💻 넓은 매장</span>
-                    <span class="stat-badge">🍲 보정동 카페거리</span>
-                </div>
-                <p>성복역에서 거리는 조금 있지만(약 4km), 주차 공간이 체계적으로 잘 관리되고 대수(23대)가 넉넉하여 차량 이동이 많은 모임에 적합합니다. 모임 후 보정동 카페거리나 주변 식당가로 이동하여 식사하기에 아주 좋은 인프라를 갖추고 있습니다.</p>
-            </div>
-            
-            <div class="venue" style="border-left-color: #888;">
-                <h3 style="color: #666;">※ 참고: 수지성복역점</h3>
-                <p>성복역 4번 출구 바로 앞에 위치하여 접근성이 가장 좋고 매장이 크지만, <strong>건물 내 주차가 전혀 지원되지 않아</strong> 차량 이용자가 많은 주말 모임 장소로는 부적합하여 순위에서 제외하였습니다.</p>
-            </div>
+            <h2>🏆 Best 3 추천 근거</h2>
+            <div id="recommendations"></div>
         </div>
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // 성복역 중심 좌표
-        const map = L.map('map').setView([37.3134, 127.0850], 13);
+        const venues = [
+            { 
+                name: '광교SK뷰레이크41F점', lat: 37.2888, lng: 127.0677, 
+                parking: '대규모 (건물전체)', free: '2시간 무료', 
+                laptop: '우수 (창가뷰 인기)', food: '매우 우수 (광교중앙)', score: 9.5,
+                desc: '건물 자체가 대형 오피스/상가라 주차가 매우 쾌적하며 2시간 무료 지원이 강력합니다. 41층 뷰는 덤입니다.'
+            },
+            { 
+                name: '용인보라DT점', lat: 37.2561, lng: 127.1153, 
+                parking: '상당히 넓음', free: '30분무료/1만당1시간', 
+                laptop: '최상 (매장 넓음)', food: '보통', score: 9.0,
+                desc: '주차장이 다른 DT점에 비해 넓게 확보되어 있으며, 매장 내부가 크고 한적하여 장시간 노트북 작업에 최적입니다.'
+            },
+            { 
+                name: '수원영통점', lat: 37.2500, lng: 127.0700, // Adjusted coord for center of Yeongtong
+                parking: '대규모 (빌딩주차)', free: '2시간 무료', 
+                laptop: '우수', food: '최상 (영통역 상권)', score: 8.8,
+                desc: '훼미리타워 대형 주차장 이용이 가능하며 2시간 무료 지원이 큰 장점입니다. 주변에 식당이 매우 많습니다.'
+            },
+            { 
+                name: '용인구성DT점', lat: 37.3002, lng: 127.1068, 
+                parking: '보통 (전용)', free: '30분무료/1만당1시간', 
+                laptop: '우수', food: '보통', score: 8.5,
+                desc: '전형적인 DT 매장으로 주차가 편리하며 구성역 인근이라 접근성이 좋습니다.'
+            },
+            { 
+                name: '용인흥덕DT점', lat: 37.2762, lng: 127.0668, 
+                parking: '보통 (전용)', free: '30분무료/1만당1시간', 
+                laptop: '우수', food: '우수', score: 8.3,
+                desc: '흥덕지구 중심에 위치하여 주차가 무난하고 주변 식사 연계가 좋습니다.'
+            },
+            { 
+                name: '용인기흥역DT점', lat: 37.2750, lng: 127.1160, 
+                parking: '보통', free: '1만당 1시간', 
+                laptop: '보통', food: '우수', score: 8.0,
+                desc: '기흥역 인근 차량 접근성이 좋은 DT 매장입니다.'
+            }
+        ];
 
+        // Sort by score
+        venues.sort((a, b) => b.score - a.score);
+
+        // Populate Table
+        const tbody = document.getElementById('table-body');
+        venues.forEach((v, i) => {
+            const tr = document.createElement('tr');
+            if (i === 0) tr.className = 'rank-1';
+            else if (i === 1) tr.className = 'rank-2';
+            else if (i === 2) tr.className = 'rank-3';
+
+            tr.innerHTML = `
+                <td>${i + 1}</td>
+                <td class="highlight">${v.name}</td>
+                <td>${v.parking}</td>
+                <td><span class="badge badge-free">${v.free}</span></td>
+                <td>${v.laptop}</td>
+                <td>${v.food}</td>
+                <td class="highlight">${v.score}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Populate Recommendations
+        const recDiv = document.getElementById('recommendations');
+        venues.slice(0, 3).forEach((v, i) => {
+            const item = document.createElement('div');
+            item.innerHTML = `<h3>${i+1}. ${v.name}</h3><p>${v.desc}</p>`;
+            recDiv.appendChild(item);
+        });
+
+        // Map setup
+        const map = L.map('map').setView([37.2800, 127.0850], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // 성복역 마커 (파란색)
-        L.marker([37.3134, 127.0725]).addTo(map).bindPopup('<b>성복역</b><br>기준점');
+        // Seongbok Station Marker
+        L.marker([37.3134, 127.0725]).addTo(map).bindPopup('<b>성복역 (기준점)</b>');
 
-        // Top 3 지점 마커 (스타벅스 초록색 스타일)
         const sbIcon = L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -138,15 +148,9 @@
             shadowSize: [41, 41]
         });
 
-        const locations = [
-            { name: '1. 용인신봉DT점', lat: 37.3235, lng: 127.0786, desc: '주차 우수, 신봉외식타운' },
-            { name: '2. 용인상현DT점', lat: 37.3025, lng: 127.0863, desc: '노트북 작업 최상, 맛집 다수' },
-            { name: '3. 용인보정DT점', lat: 37.3155, lng: 127.1139, desc: '주차 23대, 보정동 카페거리' }
-        ];
-
-        locations.forEach(loc => {
-            L.marker([loc.lat, loc.lng], {icon: sbIcon}).addTo(map)
-                .bindPopup(`<b>${loc.name}</b><br>${loc.desc}`);
+        venues.forEach(v => {
+            L.marker([v.lat, v.lng], {icon: sbIcon}).addTo(map)
+                .bindPopup(`<b>${v.name}</b><br>주차: ${v.parking}<br>혜택: ${v.free}`);
         });
     </script>
 </body>
