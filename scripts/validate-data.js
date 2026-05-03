@@ -51,8 +51,8 @@ for (const venue of venues) {
   if (!/^0[0-7]:[0-5][0-9]$/.test(venue.openTime) || venue.openTime > "07:30") {
     fail(venue.id, `openTime must be 07:30 or earlier: ${venue.openTime}`);
   }
-  if (!["용인 수지", "수원 광교"].includes(venue.area)) {
-    fail(venue.id, `area is outside Suji/Gwanggyo scope: ${venue.area}`);
+  if (!venue.area.startsWith("용인 ") && !venue.area.startsWith("수원 ")) {
+    fail(venue.id, `area is outside Yongin/Suwon scope: ${venue.area}`);
   }
   if (venue.freeOrSupportedParking !== true || !venue.parkingSummary.includes("무료")) {
     fail(venue.id, "parking must be free or purchase-supported free");
