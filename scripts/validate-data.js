@@ -54,6 +54,9 @@ for (const venue of venues) {
   if (!["용인 수지", "수원 광교"].includes(venue.area)) {
     fail(venue.id, `area is outside Suji/Gwanggyo scope: ${venue.area}`);
   }
+  if (venue.freeOrSupportedParking !== true || !venue.parkingSummary.includes("무료")) {
+    fail(venue.id, "parking must be free or purchase-supported free");
+  }
 
   for (const key of scoreKeys) {
     const value = venue.scores && venue.scores[key];

@@ -2,13 +2,13 @@
   "updatedAt": "2026-05-03",
   "scope": "수지·광교 일대, 오전 7:30 이전 오픈, 주차 가능 후보",
   "scoring": {
-    "parkingBenefit": 0.35,
-    "parkingCapacity": 0.25,
-    "openEarly": 0.15,
-    "weekendCalm": 0.10,
-    "work": 0.08,
-    "access": 0.04,
-    "price": 0.03
+    "parkingBenefit": 0.45,
+    "parkingCapacity": 0.36,
+    "openEarly": 0.08,
+    "weekendCalm": 0.05,
+    "work": 0.03,
+    "access": 0.02,
+    "price": 0.01
   },
   "venues": [
     {
@@ -20,54 +20,24 @@
       "lng": 127.0809,
       "openTime": "07:00",
       "americanoPrice": 4700,
-      "parkingSummary": "DT 매장 주차 가능",
+      "parkingSummary": "스타벅스 이용 고객 무료, 매장 측면 3대",
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
       "tags": ["07:00 오픈", "DT", "성복역권", "주차 우선"],
       "scores": {
-        "parkingBenefit": 9,
-        "parkingCapacity": 8,
+        "parkingBenefit": 10,
+        "parkingCapacity": 4,
         "openEarly": 10,
         "weekendCalm": 7,
         "work": 7,
         "access": 9
       },
-      "notes": "이번 조건에 가장 잘 맞는 수지권 1순위 후보입니다. 07:00 오픈이고 주차 가능성이 명확합니다. DT 매장 특성상 장시간 좌석 작업은 좌석 위치와 주말 시간대 영향을 받습니다.",
+      "notes": "무료 조건은 가장 좋지만 주차 가능 대수가 3대라 여유는 낮게 봐야 합니다. 2~3명 소규모 모임이거나 아주 이른 시간 도착이면 후보입니다.",
       "mapQuery": "스타벅스 수지성복DT점",
       "sources": [
         {
           "label": "테이블링 영업시간·주차",
           "url": "https://www.tabling.co.kr/place/677cca3566de5f06987ac427"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-suji-pungdeokcheon",
-      "name": "스타벅스 수지풍덕천",
-      "area": "용인 수지",
-      "type": "프랜차이즈 카페",
-      "lat": 37.3212,
-      "lng": 127.0951,
-      "openTime": "07:00",
-      "americanoPrice": 4700,
-      "parkingSummary": "주차 가능",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": ["07:00 오픈", "풍덕천", "수지 중심"],
-      "scores": {
-        "parkingBenefit": 8,
-        "parkingCapacity": 7,
-        "openEarly": 10,
-        "weekendCalm": 6.5,
-        "work": 7,
-        "access": 8.5
-      },
-      "notes": "수지 중심 접근성이 좋고 07:00 오픈 조건을 충족합니다. 주차 가능으로 확인되지만 도심형 매장이라 주차 여유는 DT·대형 건물형 후보보다 낮게 평가했습니다.",
-      "mapQuery": "스타벅스 수지풍덕천점",
-      "sources": [
-        {
-          "label": "테이블링 영업시간·주차",
-          "url": "https://www.tabling.co.kr/place/677ccd6d66de5f06988103d5"
         }
       ]
     },
@@ -80,19 +50,19 @@
       "lng": 127.0677,
       "openTime": "07:00",
       "americanoPrice": 4700,
-      "parkingSummary": "결제 시 1~2시간 무료/지원 주차",
+      "parkingSummary": "음료 구매 후 등록 시 1~2시간 무료/지원 주차, 지하 50대 이상",
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
       "tags": ["07:00 오픈", "광교호수", "대형 건물 주차", "전망"],
       "scores": {
-        "parkingBenefit": 8.5,
+        "parkingBenefit": 9.5,
         "parkingCapacity": 8,
         "openEarly": 10,
         "weekendCalm": 4.5,
         "work": 7.5,
         "access": 8
       },
-      "notes": "주차 지원과 07:00 오픈이 강점입니다. 다만 광교 대표 인기 매장이라 주말 혼잡도가 높아 장시간 코딩 모임 순위는 감점했습니다.",
+      "notes": "구매 후 무료/지원 주차와 50대 이상 지하주차가 확인되어 주차 기준에서 강합니다. 다만 광교 대표 인기 매장이라 주말 혼잡도는 감점했습니다.",
       "mapQuery": "스타벅스 광교SK뷰레이크41F점",
       "sources": [
         {
@@ -114,54 +84,24 @@
       "lng": 127.0494,
       "openTime": "07:00",
       "americanoPrice": 4700,
-      "parkingSummary": "주차 가능",
+      "parkingSummary": "1만원 이상 구매 시 1시간, 3만원 이상 2시간, 5만원 이상 3시간 무료",
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
       "tags": ["07:00 오픈", "광교중앙", "상권 접근"],
       "scores": {
-        "parkingBenefit": 8,
-        "parkingCapacity": 7.5,
+        "parkingBenefit": 8.5,
+        "parkingCapacity": 9,
         "openEarly": 10,
         "weekendCalm": 6,
         "work": 7,
         "access": 8.5
       },
-      "notes": "광교중앙 상권 접근성이 좋아 식사 연계가 쉽고 07:00 오픈입니다. 주차 가능으로 확인되지만 상가형 매장 특성상 주말 오전 이후 혼잡 가능성이 있습니다.",
+      "notes": "주차 가능 대수 50대 이상이고 아브뉴프랑/롯데마트 합산 조건이 있어 주차 여유가 좋습니다. 단, 단독 아메리카노 1잔은 1만원 조건에 못 미치므로 2명 이상 음료 구매 또는 식사 연계가 필요합니다.",
       "mapQuery": "스타벅스 수원광교점",
       "sources": [
         {
           "label": "테이블링 영업시간·주차",
           "url": "https://www.tabling.co.kr/place/677ccb0866de5f06987c82d7"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-gwanggyo-lakecity",
-      "name": "스타벅스 광교더샵레이크시티",
-      "area": "수원 광교",
-      "type": "프랜차이즈 카페",
-      "lat": 37.2849,
-      "lng": 127.0759,
-      "openTime": "07:00",
-      "americanoPrice": 4700,
-      "parkingSummary": "주차 가능",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": ["07:00 오픈", "광교호수", "넓은 편"],
-      "scores": {
-        "parkingBenefit": 8,
-        "parkingCapacity": 7.5,
-        "openEarly": 10,
-        "weekendCalm": 6,
-        "work": 7.5,
-        "access": 8
-      },
-      "notes": "07:00 오픈, 주차 가능, 광교호수권 접근성을 모두 충족합니다. 리뷰상 내부가 넓은 편이라는 장점이 있어 광교 후보 중 균형이 좋습니다.",
-      "mapQuery": "스타벅스 광교더샵레이크시티점",
-      "sources": [
-        {
-          "label": "테이블링 영업시간·주차",
-          "url": "https://www.tabling.co.kr/place/677cd47c66de5f06988d7d55"
         }
       ]
     },
@@ -174,19 +114,19 @@
       "lng": 127.0708,
       "openTime": "07:00",
       "americanoPrice": 4700,
-      "parkingSummary": "주차 가능",
+      "parkingSummary": "결제 시 2시간 무료 등록, 지하 30대 이상",
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
       "tags": ["07:00 오픈", "법조타운", "식사 연계"],
       "scores": {
-        "parkingBenefit": 8,
-        "parkingCapacity": 7,
+        "parkingBenefit": 10,
+        "parkingCapacity": 8.5,
         "openEarly": 10,
         "weekendCalm": 6.5,
         "work": 7,
         "access": 8
       },
-      "notes": "법조타운 상권이라 점심 연계와 접근성이 좋습니다. 주차 가능으로 확인되지만 상가형 주차라 장시간 무료 여부는 방문 전 재확인이 필요합니다.",
+      "notes": "결제 시 2시간 무료 등록과 30대 이상 지하주차가 확인되어 이번 기준에서 가장 안정적입니다. 토요일은 07:30 오픈으로 조건 경계값을 정확히 충족합니다.",
       "mapQuery": "스타벅스 수원법조타운점",
       "sources": [
         {
@@ -202,26 +142,30 @@
       "type": "외곽 카페",
       "lat": 37.3454,
       "lng": 127.0839,
-      "openTime": "07:00",
+      "openTime": "07:30",
       "americanoPrice": 4700,
-      "parkingSummary": "주차 가능",
+      "parkingSummary": "1만원 이상 구매 시 1시간 무료, 주차장 여러 곳",
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
       "tags": ["07:00 오픈", "고기동", "외곽", "주말 나들이 혼잡 주의"],
       "scores": {
         "parkingBenefit": 8,
-        "parkingCapacity": 7.5,
-        "openEarly": 10,
-        "weekendCalm": 5,
+        "parkingCapacity": 9,
+        "openEarly": 9,
+        "weekendCalm": 4,
         "work": 6.5,
         "access": 6.5
       },
-      "notes": "수지권이지만 고기동 외곽이라 접근성은 낮습니다. 07:00 오픈과 주차 가능은 좋지만 주말 나들이 차량 유입 가능성을 감점했습니다.",
+      "notes": "주차 공간은 여러 곳으로 넓은 편이지만 1만원 이상 구매 시 1시간 무료 조건입니다. 고기동 나들이 수요가 있어 주말 혼잡도와 진입 도로는 감점했습니다.",
       "mapQuery": "스타벅스 용인고기동유원지점",
       "sources": [
         {
           "label": "테이블링 영업시간·주차",
           "url": "https://www.tabling.co.kr/place/677cd6d366de5f069891ae36"
+        },
+        {
+          "label": "주차요금 후기",
+          "url": "https://daramidiary.tistory.com/entry/%EA%B3%A0%EA%B8%B0%EB%A6%AC-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4-%EC%86%94%EC%A7%81%ED%9B%84%EA%B8%B0-%EC%9A%A9%EC%9D%B8-%EA%B3%A0%EA%B8%B0%EB%A6%AC-%EA%B3%84%EA%B3%A1-%EC%B9%B4%ED%8E%98-%EC%B6%94%EC%B2%9C"
         }
       ]
     }
@@ -242,6 +186,14 @@
     {
       "name": "스타벅스 광교갤러리아9F",
       "reason": "10:30 오픈이라 07:30 조건 미충족"
+    },
+    {
+      "name": "스타벅스 수지풍덕천",
+      "reason": "07:00 오픈이나 주차 불가능 출처가 있어 무료/구매 무료 주차 조건 미충족"
+    },
+    {
+      "name": "스타벅스 광교더샵레이크시티",
+      "reason": "07:00 오픈과 주차 가능은 확인되지만 무료/구매 무료 주차 조건을 확인하지 못해 제외"
     }
   ]
 }

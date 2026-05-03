@@ -1,11 +1,11 @@
 const weights = {
-  parkingBenefit: 0.35,
-  parkingCapacity: 0.25,
-  openEarly: 0.15,
-  weekendCalm: 0.10,
-  work: 0.08,
-  access: 0.04,
-  price: 0.03
+  parkingBenefit: 0.45,
+  parkingCapacity: 0.36,
+  openEarly: 0.08,
+  weekendCalm: 0.05,
+  work: 0.03,
+  access: 0.02,
+  price: 0.01
 };
 
 const mapLimit = 15;
