@@ -15,6 +15,7 @@ const required = [
   "openTime",
   "americanoPrice",
   "parkingSummary",
+  "parkingSpaces",
   "freeOrSupportedParking",
   "confidence",
   "scores",
@@ -56,6 +57,9 @@ for (const venue of venues) {
   }
   if (venue.freeOrSupportedParking !== true || !venue.parkingSummary.includes("무료")) {
     fail(venue.id, "parking must be free or purchase-supported free");
+  }
+  if (typeof venue.parkingSpaces !== "number" || venue.parkingSpaces < 20) {
+    fail(venue.id, `parkingSpaces must be at least 20: ${venue.parkingSpaces}`);
   }
 
   for (const key of scoreKeys) {

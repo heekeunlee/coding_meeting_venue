@@ -1,6 +1,6 @@
 const weights = {
-  parkingBenefit: 0.65,
-  parkingCapacity: 0.16,
+  parkingCapacity: 0.45,
+  parkingBenefit: 0.36,
   openEarly: 0.07,
   weekendCalm: 0.05,
   work: 0.03,
@@ -246,6 +246,7 @@ function renderList(venues) {
       </div>
       <div class="tags">
         <span class="tag ${confidenceClass}">${escapeHtml(venue.confidence)}</span>
+        <span class="tag good">주차 ${venue.parkingSpaces}대 이상</span>
         <span class="tag">${escapeHtml(venue.parkingSummary)}</span>
         ${venue.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
       </div>
