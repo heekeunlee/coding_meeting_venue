@@ -1,1005 +1,247 @@
 {
-  "updatedAt": "2026-05-02",
+  "updatedAt": "2026-05-03",
+  "scope": "수지·광교 일대, 오전 7:30 이전 오픈, 주차 가능 후보",
   "scoring": {
-    "parkingBenefit": 0.24,
-    "parkingCapacity": 0.2,
-    "weekendCalm": 0.16,
-    "work": 0.14,
-    "access": 0.1,
-    "price": 0.06,
-    "lunch": 0.06,
-    "capacity": 0.04
+    "parkingBenefit": 0.35,
+    "parkingCapacity": 0.25,
+    "openEarly": 0.15,
+    "weekendCalm": 0.10,
+    "work": 0.08,
+    "access": 0.04,
+    "price": 0.03
   },
   "venues": [
     {
-      "id": "readx",
-      "name": "리드엑스 ReadX",
-      "area": "용인 기흥",
-      "type": "북카페",
-      "lat": 37.2474,
-      "lng": 127.0783,
-      "americanoPrice": 5000,
-      "parkingSummary": "장시간 주차 지원",
+      "id": "starbucks-suji-seongbok-dt",
+      "name": "스타벅스 수지성복DT",
+      "area": "용인 수지",
+      "type": "DT 카페",
+      "lat": 37.3137,
+      "lng": 127.0809,
+      "openTime": "07:00",
+      "americanoPrice": 4700,
+      "parkingSummary": "DT 매장 주차 가능",
       "freeOrSupportedParking": true,
-      "confidence": "부분검증",
-      "tags": [
-        "조용함",
-        "북카페",
-        "경희대권"
-      ],
+      "confidence": "검증됨",
+      "tags": ["07:00 오픈", "DT", "성복역권", "주차 우선"],
       "scores": {
-        "work": 9.5,
         "parkingBenefit": 9,
-        "parkingCapacity": 7.5,
-        "access": 9,
-        "lunch": 7.5,
-        "capacity": 7.5,
-        "weekendCalm": 8.5
+        "parkingCapacity": 8,
+        "openEarly": 10,
+        "weekendCalm": 7,
+        "work": 7,
+        "access": 9
       },
-      "notes": "북카페 성격이라 몰입 작업과 독서에는 강점이 큽니다. 대형 베이커리 카페보다 좌석 회전과 대화 허용도는 방문 시간대 확인이 필요합니다.",
-      "mapQuery": "리드엑스 ReadX 용인 기흥 덕영대로 1698",
+      "notes": "이번 조건에 가장 잘 맞는 수지권 1순위 후보입니다. 07:00 오픈이고 주차 가능성이 명확합니다. DT 매장 특성상 장시간 좌석 작업은 좌석 위치와 주말 시간대 영향을 받습니다.",
+      "mapQuery": "스타벅스 수지성복DT점",
       "sources": [
         {
-          "label": "ReadX 리뷰",
-          "url": "https://almond7.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B2%BD%ED%9D%AC%EB%8C%80-%EA%B5%AD%EC%A0%9C%EC%BA%A0%ED%8D%BC%EC%8A%A4-%EC%9D%B8%EA%B7%BC-%EB%B6%81%EC%B9%B4%ED%8E%98-ReadX-%E2%80%94-%EA%B3%B5%EB%B6%80%C2%B7%EB%8F%85%EC%84%9C%C2%B7%EC%9D%BC%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%A1%B0%EC%9A%A9%ED%95%9C-%EA%B0%90%EC%84%B1-%EA%B3%B5%EA%B0%84"
+          "label": "테이블링 영업시간·주차",
+          "url": "https://www.tabling.co.kr/place/677cca3566de5f06987ac427"
         }
       ]
     },
     {
-      "id": "forest-outings-giheung",
-      "name": "포레스트아웃팅스 기흥",
-      "area": "용인 기흥",
-      "type": "초대형 카페",
-      "lat": 37.226,
-      "lng": 127.1089,
-      "americanoPrice": 6500,
-      "parkingSummary": "무료 대형 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "초대형",
-        "브런치",
-        "좌석 많음"
-      ],
-      "scores": {
-        "work": 7.5,
-        "parkingBenefit": 10,
-        "parkingCapacity": 9.5,
-        "access": 8.5,
-        "lunch": 8.5,
-        "capacity": 10,
-        "weekendCalm": 4.5
-      },
-      "notes": "주차와 좌석 규모는 매우 강하지만 주말 가족 방문객이 많아 조용한 코딩 세션은 오전 시간대가 유리합니다.",
-      "mapQuery": "포레스트아웃팅스 기흥",
-      "sources": [
-        {
-          "label": "방문 리뷰",
-          "url": "https://torieats.com/entry/%F0%9F%8C%BF-%EC%9A%A9%EC%9D%B8-%EC%B9%B4%ED%8E%98-%ED%8F%AC%EB%A0%88%EC%8A%A4%ED%8A%B8%EC%95%84%EC%9B%83%ED%8C%85%EC%8A%A4-%E2%80%94-%EB%9D%BC%EB%96%BC%C2%B7%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8%C2%B7%EC%B9%B4%EC%95%BC-%ED%81%AC%EB%A3%A8%EC%95%84%EC%83%81-%EC%86%94%EC%A7%81-%ED%9B%84%EA%B8%B0"
-        }
-      ]
-    },
-    {
-      "id": "moon115",
-      "name": "문115",
-      "area": "용인 처인",
-      "type": "복합 카페",
-      "lat": 37.3385,
-      "lng": 127.1831,
-      "americanoPrice": 6500,
-      "parkingSummary": "무료 전용 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "24시까지",
-        "피자",
-        "무료 WiFi"
-      ],
-      "scores": {
-        "work": 7.5,
-        "parkingBenefit": 10,
-        "parkingCapacity": 9,
-        "access": 6.5,
-        "lunch": 9,
-        "capacity": 9,
-        "weekendCalm": 6.5
-      },
-      "notes": "운영 시간이 길고 식사 메뉴가 있어 반나절 모임에 좋습니다. 성복·영통권에서는 이동 거리가 긴 편입니다.",
-      "mapQuery": "문115 용인 모현읍 동림리 115",
-      "sources": [
-        {
-          "label": "공식 사이트",
-          "url": "https://www.moon115.com/cafe"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-gwanggyo-41f",
-      "name": "스타벅스 광교SK뷰레이크41F",
-      "area": "수원 영통",
+      "id": "starbucks-suji-pungdeokcheon",
+      "name": "스타벅스 수지풍덕천",
+      "area": "용인 수지",
       "type": "프랜차이즈 카페",
+      "lat": 37.3212,
+      "lng": 127.0951,
+      "openTime": "07:00",
+      "americanoPrice": 4700,
+      "parkingSummary": "주차 가능",
+      "freeOrSupportedParking": true,
+      "confidence": "검증됨",
+      "tags": ["07:00 오픈", "풍덕천", "수지 중심"],
+      "scores": {
+        "parkingBenefit": 8,
+        "parkingCapacity": 7,
+        "openEarly": 10,
+        "weekendCalm": 6.5,
+        "work": 7,
+        "access": 8.5
+      },
+      "notes": "수지 중심 접근성이 좋고 07:00 오픈 조건을 충족합니다. 주차 가능으로 확인되지만 도심형 매장이라 주차 여유는 DT·대형 건물형 후보보다 낮게 평가했습니다.",
+      "mapQuery": "스타벅스 수지풍덕천점",
+      "sources": [
+        {
+          "label": "테이블링 영업시간·주차",
+          "url": "https://www.tabling.co.kr/place/677ccd6d66de5f06988103d5"
+        }
+      ]
+    },
+    {
+      "id": "starbucks-gwanggyo-sk-view-lake-41f",
+      "name": "스타벅스 광교SK뷰레이크41F",
+      "area": "수원 광교",
+      "type": "전망 카페",
       "lat": 37.2888,
       "lng": 127.0677,
+      "openTime": "07:00",
       "americanoPrice": 4700,
-      "parkingSummary": "결제 시 1.5~2시간 지원",
+      "parkingSummary": "결제 시 1~2시간 무료/지원 주차",
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": [
-        "광교",
-        "전망",
-        "식당가"
-      ],
+      "tags": ["07:00 오픈", "광교호수", "대형 건물 주차", "전망"],
       "scores": {
+        "parkingBenefit": 8.5,
+        "parkingCapacity": 8,
+        "openEarly": 10,
+        "weekendCalm": 4.5,
         "work": 7.5,
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 8.5,
-        "access": 9.5,
-        "lunch": 9.5,
-        "capacity": 8,
-        "weekendCalm": 4.5
+        "access": 8
       },
-      "notes": "접근성과 식사 연계가 좋고 주차도 지원됩니다. 인기 매장이라 창가석과 단체 좌석 확보 난도는 높습니다.",
+      "notes": "주차 지원과 07:00 오픈이 강점입니다. 다만 광교 대표 인기 매장이라 주말 혼잡도가 높아 장시간 코딩 모임 순위는 감점했습니다.",
       "mapQuery": "스타벅스 광교SK뷰레이크41F점",
       "sources": [
         {
-          "label": "테이블링",
+          "label": "테이블링 영업시간·주차",
           "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
         },
         {
-          "label": "주차 리뷰",
+          "label": "주차 후기",
           "url": "https://im-info.tistory.com/entry/%EC%BB%A4%ED%94%BC-%EB%B7%B0-%EB%A7%9B%EC%A7%91-%EA%B4%91%EA%B5%90-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4-41%EC%B8%B5-%EA%B3%A0%EC%B8%B5-%EC%A3%BC%EC%B0%A8-%EA%BF%80%ED%8C%81?category=1153242"
         }
       ]
     },
     {
-      "id": "aiso",
-      "name": "아이소 AISO",
-      "area": "용인 처인",
-      "type": "대형 로스터리",
-      "lat": 37.2344,
-      "lng": 127.2948,
-      "americanoPrice": 6000,
-      "parkingSummary": "전용 주차장",
+      "id": "starbucks-suwon-gwanggyo",
+      "name": "스타벅스 수원광교",
+      "area": "수원 광교",
+      "type": "프랜차이즈 카페",
+      "lat": 37.2917,
+      "lng": 127.0494,
+      "openTime": "07:00",
+      "americanoPrice": 4700,
+      "parkingSummary": "주차 가능",
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": [
-        "단체 가능",
-        "로스터리",
-        "조용한 외곽"
-      ],
+      "tags": ["07:00 오픈", "광교중앙", "상권 접근"],
       "scores": {
-        "work": 8.5,
-        "parkingBenefit": 9,
-        "parkingCapacity": 8.5,
-        "access": 5.5,
-        "lunch": 6.5,
-        "capacity": 8.5,
-        "weekendCalm": 8
-      },
-      "notes": "작업 공간과 단체 이용 가능성이 좋지만 용인·수원 서부권에서 접근성은 떨어집니다.",
-      "mapQuery": "아이소 카페 용인 양지 은이로 72",
-      "sources": [
-        {
-          "label": "방문 리뷰",
-          "url": "https://drhouse0414.tistory.com/entry/%EA%B2%BD%EA%B8%B0%EB%8F%84-%EC%9A%A9%EC%9D%B8-%EC%96%91%EC%A7%80-%EB%A1%9C%EC%8A%A4%ED%84%B0%EB%A6%AC%EC%B9%B4%ED%8E%98-%EC%B6%94%EC%B2%9C-%EC%95%84%EC%9D%B4%EC%86%8C-%EC%B9%B4%ED%8E%98-%ED%95%9C%EC%A0%81%ED%95%98%EA%B3%A0-%EC%A1%B0%EC%9A%A9%ED%95%9C-%EC%88%B2%EC%86%8D%EA%B0%90%EC%84%B1-%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC-%EC%B9%B4%ED%8E%98%EC%B6%94%EC%B2%9C"
-        }
-      ]
-    },
-    {
-      "id": "urbanleaf",
-      "name": "어반리프",
-      "area": "용인 기흥",
-      "type": "대형 베이커리",
-      "lat": 37.2397,
-      "lng": 127.1111,
-      "americanoPrice": 5900,
-      "parkingSummary": "전용 대형 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "부분검증",
-      "tags": [
-        "식물원형",
-        "베이커리",
-        "좌석 많음"
-      ],
-      "scores": {
-        "work": 6.5,
-        "parkingBenefit": 8.5,
-        "parkingCapacity": 9,
-        "access": 8.5,
-        "lunch": 7.5,
-        "capacity": 9.5,
-        "weekendCalm": 5
-      },
-      "notes": "주차와 규모는 좋지만 분위기형 카페라 콘센트와 집중 작업성은 좌석 위치에 따라 편차가 큽니다.",
-      "mapQuery": "어반리프 용인",
-      "sources": [
-        {
-          "label": "방문 리뷰",
-          "url": "https://hozy.tistory.com/705"
-        }
-      ]
-    },
-    {
-      "id": "terarosa-giheung",
-      "name": "테라로사 기흥",
-      "area": "용인 기흥",
-      "type": "대형 카페",
-      "lat": 37.2259,
-      "lng": 127.1088,
-      "americanoPrice": 6000,
-      "parkingSummary": "리빙파워센터 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "부분검증",
-      "tags": [
-        "복합몰",
-        "식사 연계",
-        "대형 주차"
-      ],
-      "scores": {
-        "work": 7.5,
-        "parkingBenefit": 8,
-        "parkingCapacity": 9.5,
-        "access": 8,
-        "lunch": 9,
-        "capacity": 8,
-        "weekendCalm": 5.5
-      },
-      "notes": "복합몰 주차와 식사 연계가 강점입니다. 주말 혼잡도는 몰 방문객 영향을 받습니다.",
-      "mapQuery": "테라로사 기흥 리빙파워센터",
-      "sources": [
-        {
-          "label": "지도 검색",
-          "url": "https://map.naver.com/p/search/%ED%85%8C%EB%9D%BC%EB%A1%9C%EC%82%AC%20%EA%B8%B0%ED%9D%A5"
-        }
-      ]
-    },
-    {
-      "id": "coffee-banhada-costco",
-      "name": "커피에반하다 용인코스트코점",
-      "area": "용인 기흥",
-      "type": "저가 카페",
-      "lat": 37.2367,
-      "lng": 127.1058,
-      "americanoPrice": 2200,
-      "parkingSummary": "상가/주변 주차 확인필요",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "가성비",
-        "공세동",
-        "짧은 회의"
-      ],
-      "scores": {
-        "work": 5.5,
-        "parkingBenefit": 5.5,
-        "parkingCapacity": 6,
-        "access": 8,
-        "lunch": 8,
-        "capacity": 4.5,
-        "weekendCalm": 7
-      },
-      "notes": "가격은 매우 좋지만 장시간 노트북 모임보다는 근처 식사 후 짧은 회의 후보입니다.",
-      "mapQuery": "커피에반하다 용인코스트코점",
-      "sources": [
-        {
-          "label": "당근 업체 정보",
-          "url": "https://www.daangn.com/kr/local-profile/%EC%BB%A4%ED%94%BC%EC%97%90%EB%B0%98%ED%95%98%EB%8B%A4-%EC%9A%A9%EC%9D%B8%EC%BD%94%EC%8A%A4%ED%8A%B8%EC%BD%94%EC%A0%90-b3o64wpkrux9/"
-        }
-      ]
-    },
-    {
-      "id": "joain-studio",
-      "name": "조아인 스튜디오 카페",
-      "area": "용인 처인",
-      "type": "카페 레스토랑",
-      "lat": 37.345,
-      "lng": 127.2,
-      "americanoPrice": 6000,
-      "parkingSummary": "1·2주차장",
-      "freeOrSupportedParking": true,
-      "confidence": "부분검증",
-      "tags": [
-        "레스토랑",
-        "브런치",
-        "외곽"
-      ],
-      "scores": {
-        "work": 6.5,
-        "parkingBenefit": 8,
-        "parkingCapacity": 8,
-        "access": 5.5,
-        "lunch": 9.5,
-        "capacity": 8,
-        "weekendCalm": 6
-      },
-      "notes": "식사와 카페를 한 번에 해결하기 좋습니다. 코딩 집중도는 식사 피크 시간을 피해야 합니다.",
-      "mapQuery": "조아인스튜디오 용인 문형동림로 189",
-      "sources": [
-        {
-          "label": "방문 리뷰",
-          "url": "https://foodreview.tistory.com/entry/%EC%A1%B0%EC%95%84%EC%9D%B8-%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4-%EC%B9%B4%ED%8E%98-%EB%A0%88%EC%8A%A4%ED%86%A0%EB%9E%91-%EB%8C%80%ED%98%95%EC%B9%B4%ED%8E%98-%EC%9A%A9%EC%9D%B8-%ED%8C%8C%EC%8A%A4%ED%83%80-%EB%A7%9B%EC%A7%91"
-        }
-      ]
-    },
-    {
-      "id": "study-si-jak",
-      "name": "시작 스터디 카페",
-      "area": "수원",
-      "type": "스터디카페",
-      "lat": 37.2636,
-      "lng": 127.0286,
-      "americanoPrice": 4000,
-      "parkingSummary": "주차 확인필요",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "전좌석 콘센트",
-        "스터디룸",
-        "장시간"
-      ],
-      "scores": {
-        "work": 10,
-        "parkingBenefit": 4.5,
-        "parkingCapacity": 4.5,
-        "access": 7.5,
-        "lunch": 7,
-        "capacity": 7,
-        "weekendCalm": 8.5
-      },
-      "notes": "노트북 작업성만 보면 최상위 후보입니다. 다만 차량 주차 조건이 확실하지 않아 자차 모임에는 감점했습니다.",
-      "mapQuery": "시작 스터디 카페 수원",
-      "sources": [
-        {
-          "label": "수원 공부 카페 글",
-          "url": "https://booksmoa.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B3%B5%EB%B6%80%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%B9%B4%ED%8E%98-%ED%98%BC%EA%B3%B5%EC%A1%B1%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%B9%B4%ED%8E%98"
-        }
-      ]
-    },
-    {
-      "id": "resh-study",
-      "name": "스터디 카페 RE'SH",
-      "area": "수원 영통",
-      "type": "스터디카페",
-      "lat": 37.3014,
-      "lng": 127.0449,
-      "americanoPrice": 4500,
-      "parkingSummary": "주차 확인필요",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "광교 대학로",
-        "집중석",
-        "조용함"
-      ],
-      "scores": {
-        "work": 9,
-        "parkingBenefit": 4.5,
-        "parkingCapacity": 4.5,
-        "access": 8,
-        "lunch": 7.5,
-        "capacity": 6.5,
-        "weekendCalm": 8
-      },
-      "notes": "집중 작업에는 좋지만 주차 정보가 불확실해 대중교통·근거리 조합에 더 적합합니다.",
-      "mapQuery": "스터디 카페 RE'SH 수원 영통 대학로 60",
-      "sources": [
-        {
-          "label": "수원 공부 카페 글",
-          "url": "https://booksmoa.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B3%B5%EB%B6%80%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%B9%B4%ED%8E%98-%ED%98%BC%EA%B3%B5%EC%A1%B1%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%B9%B4%ED%8E%98"
-        }
-      ]
-    },
-    {
-      "id": "brick-study",
-      "name": "브릭 스터디 카페",
-      "area": "수원 팔달",
-      "type": "스터디카페",
-      "lat": 37.2765,
-      "lng": 127.0255,
-      "americanoPrice": 3500,
-      "parkingSummary": "도심 주차 확인필요",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "24시간",
-        "스터디룸",
-        "가성비"
-      ],
-      "scores": {
-        "work": 9,
-        "parkingBenefit": 4,
-        "parkingCapacity": 4,
-        "access": 8,
-        "lunch": 8,
-        "capacity": 7,
-        "weekendCalm": 8
-      },
-      "notes": "24시간 운영과 작업 환경은 장점입니다. 팔달 도심권이라 차량 주차 난도는 별도 확인이 필요합니다.",
-      "mapQuery": "브릭 스터디 카페 수원 팔달 중부대로 75",
-      "sources": [
-        {
-          "label": "수원 공부 카페 글",
-          "url": "https://booksmoa.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B3%B5%EB%B6%80%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%B9%B4%ED%8E%98-%ED%98%BC%EA%B3%B5%EC%A1%B1%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%B9%B4%ED%8E%98"
-        }
-      ]
-    },
-    {
-      "id": "mono-study",
-      "name": "모노 스터디 카페",
-      "area": "수원 영통",
-      "type": "스터디카페",
-      "lat": 37.2521,
-      "lng": 127.0715,
-      "americanoPrice": 5500,
-      "parkingSummary": "주차 확인필요",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "영통역권",
-        "집중석",
-        "소파"
-      ],
-      "scores": {
-        "work": 8.5,
-        "parkingBenefit": 4.5,
-        "parkingCapacity": 4.5,
-        "access": 8.5,
-        "lunch": 9,
-        "capacity": 6,
-        "weekendCalm": 8
-      },
-      "notes": "영통역 상권 접근성과 식사 연계가 좋습니다. 자차보다는 도보·대중교통 모임에 맞습니다.",
-      "mapQuery": "모노 스터디 카페 수원 영통 봉영로 1612",
-      "sources": [
-        {
-          "label": "수원 공부 카페 글",
-          "url": "https://booksmoa.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B3%B5%EB%B6%80%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%B9%B4%ED%8E%98-%ED%98%BC%EA%B3%B5%EC%A1%B1%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%B9%B4%ED%8E%98"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-suwon-yeongtong",
-      "name": "스타벅스 수원영통점",
-      "area": "수원 영통",
-      "type": "프랜차이즈 카페",
-      "lat": 37.25,
-      "lng": 127.07,
-      "americanoPrice": 4700,
-      "parkingSummary": "건물 주차 지원 추정",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "영통역권",
-        "식당가",
-        "표준 작업"
-      ],
-      "scores": {
-        "work": 8,
-        "parkingBenefit": 7,
-        "parkingCapacity": 7,
-        "access": 9,
-        "lunch": 9.5,
-        "capacity": 7,
-        "weekendCalm": 5.5
-      },
-      "notes": "영통·망포·매탄 접근성이 좋고 주변 식당이 많습니다. 현재 주차 지원 시간은 방문 전 재확인이 필요합니다.",
-      "mapQuery": "스타벅스 수원영통점",
-      "sources": [
-        {
-          "label": "스타벅스 가격 참고",
-          "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-yongin-bora-dt",
-      "name": "스타벅스 용인보라DT",
-      "area": "용인 기흥",
-      "type": "프랜차이즈 카페",
-      "lat": 37.2561,
-      "lng": 127.1153,
-      "americanoPrice": 4700,
-      "parkingSummary": "DT 매장 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "DT",
-        "신갈권",
-        "표준 작업"
-      ],
-      "scores": {
-        "work": 8,
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 7.5,
-        "access": 8.5,
-        "lunch": 7.5,
-        "capacity": 6.5,
-        "weekendCalm": 6.5
-      },
-      "notes": "신갈·기흥권 자차 접근이 좋습니다. DT 매장은 주차면 수가 제한될 수 있어 주말 피크는 피하는 편이 낫습니다.",
-      "mapQuery": "스타벅스 용인보라DT점",
-      "sources": [
-        {
-          "label": "스타벅스 가격 참고",
-          "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-yongin-mabuk-dt",
-      "name": "스타벅스 용인마북DT",
-      "area": "용인 기흥",
-      "type": "프랜차이즈 카페",
-      "lat": 37.2966,
-      "lng": 127.1182,
-      "americanoPrice": 4700,
-      "parkingSummary": "DT 매장 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "DT",
-        "용구대로",
-        "수지-기흥 중간"
-      ],
-      "scores": {
-        "work": 8,
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 7,
-        "access": 8,
-        "lunch": 7.5,
-        "capacity": 6.5,
-        "weekendCalm": 6.5
-      },
-      "notes": "수지와 기흥 사이 중간 지점 후보입니다. 대형 모임보다는 3~5명 규모에 맞습니다.",
-      "mapQuery": "스타벅스 용인마북DT점",
-      "sources": [
-        {
-          "label": "스타벅스 가격 참고",
-          "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-yongin-guseong-dt",
-      "name": "스타벅스 용인구성DT",
-      "area": "용인 기흥",
-      "type": "프랜차이즈 카페",
-      "lat": 37.3002,
-      "lng": 127.1068,
-      "americanoPrice": 4700,
-      "parkingSummary": "DT 매장 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "DT",
-        "구성역권",
-        "표준 작업"
-      ],
-      "scores": {
-        "work": 7.5,
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 7,
-        "access": 7.5,
-        "lunch": 8,
-        "capacity": 6.5,
-        "weekendCalm": 6.5
-      },
-      "notes": "구성역 주변 거주자에게 무난합니다. 장시간 코딩보다는 접근성 균형 후보입니다.",
-      "mapQuery": "스타벅스 용인구성DT점",
-      "sources": [
-        {
-          "label": "스타벅스 가격 참고",
-          "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
-        }
-      ]
-    },
-    {
-      "id": "starbucks-yongin-heungdeok-dt",
-      "name": "스타벅스 용인흥덕DT",
-      "area": "용인 기흥",
-      "type": "프랜차이즈 카페",
-      "lat": 37.2762,
-      "lng": 127.0668,
-      "americanoPrice": 4700,
-      "parkingSummary": "DT 매장 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "DT",
-        "흥덕",
-        "광교·매탄 접근"
-      ],
-      "scores": {
-        "work": 7.5,
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 7,
-        "access": 8.5,
-        "lunch": 8.5,
-        "capacity": 6.5,
-        "weekendCalm": 6
-      },
-      "notes": "광교·매탄·흥덕 참여자가 섞였을 때 접근성이 좋습니다. 주말 좌석 확보는 시간대 영향을 받습니다.",
-      "mapQuery": "스타벅스 용인흥덕DT점",
-      "sources": [
-        {
-          "label": "스타벅스 가격 참고",
-          "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
-        }
-      ]
-    },
-    {
-      "id": "cafe-onze",
-      "name": "카페 온즈",
-      "area": "수원 영통",
-      "type": "동네 카페",
-      "lat": 37.2631,
-      "lng": 127.0469,
-      "americanoPrice": 3500,
-      "parkingSummary": "도심 주차 확인필요",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "매탄동",
-        "샌드위치",
-        "가성비"
-      ],
-      "scores": {
-        "work": 6.5,
-        "parkingBenefit": 4.5,
-        "parkingCapacity": 4.5,
-        "access": 8,
-        "lunch": 8,
-        "capacity": 5,
-        "weekendCalm": 7
-      },
-      "notes": "가격과 간단한 식사 연계는 좋지만, 차량 여러 대와 장시간 코딩에는 보수적으로 평가했습니다.",
-      "mapQuery": "카페 온즈 수원 매탄동",
-      "sources": [
-        {
-          "label": "업체 요약",
-          "url": "https://dinner.ambitstock.com/samsungElectronics/yeongtong/restaurant/%EC%B9%B4%ED%8E%98%20%EC%98%A8%EC%A6%88"
-        }
-      ]
-    },
-    {
-      "id": "if-cafe",
-      "name": "이프카페 2F카페",
-      "area": "수원 영통",
-      "type": "동네 카페",
-      "lat": 37.2592,
-      "lng": 127.0414,
-      "americanoPrice": 3500,
-      "parkingSummary": "도심 주차 확인필요",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "매탄동",
-        "샌드위치",
-        "2층"
-      ],
-      "scores": {
-        "work": 6,
-        "parkingBenefit": 4.5,
-        "parkingCapacity": 4.5,
-        "access": 8,
-        "lunch": 7.5,
-        "capacity": 5,
-        "weekendCalm": 7
-      },
-      "notes": "가벼운 회의와 2~3명 작업 후보입니다. 주차와 콘센트 정보는 추가 확인이 필요합니다.",
-      "mapQuery": "이프카페 2F카페 수원 매탄동",
-      "sources": [
-        {
-          "label": "업체 요약",
-          "url": "https://dinner.ambitstock.com/samsungElectronics/yeongtong/restaurant/%EC%9D%B4%ED%94%84%EC%B9%B4%ED%8E%98%202F%EC%B9%B4%ED%8E%98"
-        }
-      ]
-    },
-    {
-      "id": "go-ssi-coffee",
-      "name": "고씨커피",
-      "area": "수원 영통",
-      "type": "동네 카페",
-      "lat": 37.2462,
-      "lng": 127.0788,
-      "americanoPrice": 4500,
-      "parkingSummary": "매장 앞 소수 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "부분검증",
-      "tags": [
-        "경희대권",
-        "크로플",
-        "소규모"
-      ],
-      "scores": {
-        "work": 6.5,
-        "parkingBenefit": 5.5,
-        "parkingCapacity": 3.5,
-        "access": 8,
-        "lunch": 7.5,
-        "capacity": 5.5,
-        "weekendCalm": 6.5
-      },
-      "notes": "분위기와 접근성은 좋지만 주차면이 적어 차량 여러 대가 오는 모임에는 불리합니다.",
-      "mapQuery": "고씨커피 수원 영통 매영로415번길",
-      "sources": [
-        {
-          "label": "방문 리뷰",
-          "url": "https://www.keyzard.cc/yh-kim_/nb/223780933621"
-        }
-      ]
-    },
-    {
-      "id": "dojo-coffee-hwaseo",
-      "name": "도조커피 화서점",
-      "area": "수원 팔달",
-      "type": "가성비 카페",
-      "lat": 37.2846,
-      "lng": 126.9899,
-      "americanoPrice": 2000,
-      "parkingSummary": "주차 불가",
-      "freeOrSupportedParking": false,
-      "confidence": "부분검증",
-      "tags": [
-        "저가",
-        "화서",
-        "디저트"
-      ],
-      "scores": {
-        "work": 5.5,
-        "parkingBenefit": 1,
-        "parkingCapacity": 1,
-        "access": 7.5,
-        "lunch": 7,
-        "capacity": 4.5,
-        "weekendCalm": 6.5
-      },
-      "notes": "커피 가격은 강력하지만 주차가 불리해 자차 기반 주말 코딩 모임에는 낮게 평가했습니다.",
-      "mapQuery": "도조커피 화서점",
-      "sources": [
-        {
-          "label": "방문 리뷰",
-          "url": "https://ylkstrakim74.tistory.com/entry/%EC%88%98%EC%9B%90-%ED%99%94%EC%84%9C%EB%8F%99-%EB%8F%84%EC%A1%B0%EC%BB%A4%ED%94%BC-%EC%BF%A0%EB%A7%88%EC%BC%80%EC%9D%B4%ED%81%AC%C2%B7%ED%91%B8%EB%94%A9-%EB%A7%9B%EB%B3%B8-%EA%B0%80%EC%84%B1%EB%B9%84-%EC%B9%B4%ED%8E%98"
-        }
-      ]
-    },
-    {
-      "id": "mega-bottle-gwonseon",
-      "name": "메가보틀 권선점",
-      "area": "수원 권선",
-      "type": "가성비 카페",
-      "lat": 37.2574,
-      "lng": 126.9906,
-      "americanoPrice": 3000,
-      "parkingSummary": "건물 뒤 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "부분검증",
-      "tags": [
-        "저가",
-        "권선",
-        "늦은 영업"
-      ],
-      "scores": {
-        "work": 5.5,
-        "parkingBenefit": 6,
-        "parkingCapacity": 4.5,
-        "access": 6.5,
-        "lunch": 7,
-        "capacity": 4.5,
-        "weekendCalm": 6.5
-      },
-      "notes": "가격과 주차 가능성은 좋지만 소모임 코딩 장소로는 좌석·콘센트 검증이 더 필요합니다.",
-      "mapQuery": "메가보틀 권선점",
-      "sources": [
-        {
-          "label": "방문 리뷰",
-          "url": "https://minbbung.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B6%8C%EC%84%A0%EB%8F%99-%EC%B9%B4%ED%8E%98-%EB%A9%94%EA%B0%80%EB%B3%B4%ED%8B%80-%EA%B6%8C%EC%84%A0%EC%A0%90-%EA%B6%8C%EC%84%A0%EB%8F%99-%EC%BB%A4%ED%94%BC-%EB%A7%9B%EC%A7%91-%ED%83%91%EB%8F%99-%EC%BB%A4%ED%94%BC-%EB%A7%9B%EC%A7%91"
-        }
-      ]
-    },
-    {
-      "id": "high-light-suji",
-      "name": "하이라이트",
-      "area": "용인 수지",
-      "type": "베이커리 카페",
-      "lat": 37.3032,
-      "lng": 127.077,
-      "americanoPrice": 5500,
-      "parkingSummary": "주차 지원 추정",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "성복권",
-        "브런치",
-        "대형"
-      ],
-      "scores": {
-        "work": 7,
-        "parkingBenefit": 7,
-        "parkingCapacity": 7,
-        "access": 9.5,
-        "lunch": 8.5,
-        "capacity": 8,
-        "weekendCalm": 5
-      },
-      "notes": "성복·수지 접근성이 좋은 후보입니다. 현재 주차 지원 조건과 콘센트 좌석은 재확인이 필요합니다.",
-      "mapQuery": "하이라이트 카페 용인 수지",
-      "sources": [
-        {
-          "label": "지도 검색",
-          "url": "https://map.naver.com/p/search/%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8A%B8%20%EC%B9%B4%ED%8E%98%20%EC%9A%A9%EC%9D%B8%20%EC%88%98%EC%A7%80"
-        }
-      ]
-    },
-    {
-      "id": "le-ditour",
-      "name": "르디투어",
-      "area": "용인 수지",
-      "type": "베이커리 카페",
-      "lat": 37.3121,
-      "lng": 127.0549,
-      "americanoPrice": 6000,
-      "parkingSummary": "주차 지원 추정",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "건축 공간",
-        "수지",
-        "대형"
-      ],
-      "scores": {
-        "work": 7.5,
-        "parkingBenefit": 6.5,
-        "parkingCapacity": 6.5,
-        "access": 9,
-        "lunch": 8,
-        "capacity": 8,
-        "weekendCalm": 5.5
-      },
-      "notes": "수지·광교권 접근성과 공간성은 좋지만 주말 혼잡도와 전원 좌석은 확인이 필요합니다.",
-      "mapQuery": "르디투어 용인 수지",
-      "sources": [
-        {
-          "label": "지도 검색",
-          "url": "https://map.naver.com/p/search/%EB%A5%B4%EB%94%94%ED%88%AC%EC%96%B4%20%EC%9A%A9%EC%9D%B8"
-        }
-      ]
-    },
-    {
-      "id": "chaekbaljeonso-gwanggyo",
-      "name": "책발전소 광교",
-      "area": "수원 영통",
-      "type": "북카페",
-      "lat": 37.287,
-      "lng": 127.059,
-      "americanoPrice": 5000,
-      "parkingSummary": "앨리웨이 주차",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "북카페",
-        "광교",
-        "식당가"
-      ],
-      "scores": {
-        "work": 9,
-        "parkingBenefit": 6.5,
-        "parkingCapacity": 7,
-        "access": 8.5,
-        "lunch": 9.5,
-        "capacity": 6,
-        "weekendCalm": 6.5
-      },
-      "notes": "작업 분위기와 식사 연계가 좋습니다. 좌석 규모가 대형 카페보다 작아 4명 이하에 더 적합합니다.",
-      "mapQuery": "책발전소 광교",
-      "sources": [
-        {
-          "label": "지도 검색",
-          "url": "https://map.naver.com/p/search/%EC%B1%85%EB%B0%9C%EC%A0%84%EC%86%8C%20%EA%B4%91%EA%B5%90"
-        }
-      ]
-    },
-    {
-      "id": "time-to-be",
-      "name": "타임투비",
-      "area": "용인 수지",
-      "type": "대형 카페",
-      "lat": 37.315,
-      "lng": 127.075,
-      "americanoPrice": 6000,
-      "parkingSummary": "전용 주차 추정",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "수지",
-        "대형",
-        "건축 공간"
-      ],
-      "scores": {
-        "work": 7,
-        "parkingBenefit": 7,
-        "parkingCapacity": 7.5,
-        "access": 8.5,
-        "lunch": 7.5,
-        "capacity": 8,
-        "weekendCalm": 6
-      },
-      "notes": "수지권 모임 후보입니다. 현재 운영/주차/콘센트 좌석 정보는 방문 전 확인이 필요합니다.",
-      "mapQuery": "타임투비 용인 수지",
-      "sources": [
-        {
-          "label": "지도 검색",
-          "url": "https://map.naver.com/p/search/%ED%83%80%EC%9E%84%ED%88%AC%EB%B9%84%20%EC%9A%A9%EC%9D%B8%20%EC%88%98%EC%A7%80"
-        }
-      ]
-    },
-    {
-      "id": "lake-sitting",
-      "name": "호수앉기",
-      "area": "용인 기흥",
-      "type": "베이커리 카페",
-      "lat": 37.2516,
-      "lng": 127.1141,
-      "americanoPrice": 5500,
-      "parkingSummary": "공영/주변 주차 추정",
-      "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "신갈권",
-        "대형",
-        "단체"
-      ],
-      "scores": {
-        "work": 7,
         "parkingBenefit": 8,
         "parkingCapacity": 7.5,
-        "access": 8,
-        "lunch": 7.5,
-        "capacity": 8.5,
-        "weekendCalm": 6
+        "openEarly": 10,
+        "weekendCalm": 6,
+        "work": 7,
+        "access": 8.5
       },
-      "notes": "기흥·신갈권 대형 후보입니다. 주차 정책과 정확한 좌표는 추가 검증이 필요합니다.",
-      "mapQuery": "호수앉기 용인",
+      "notes": "광교중앙 상권 접근성이 좋아 식사 연계가 쉽고 07:00 오픈입니다. 주차 가능으로 확인되지만 상가형 매장 특성상 주말 오전 이후 혼잡 가능성이 있습니다.",
+      "mapQuery": "스타벅스 수원광교점",
       "sources": [
         {
-          "label": "지도 검색",
-          "url": "https://map.naver.com/p/search/%ED%98%B8%EC%88%98%EC%95%89%EA%B8%B0%20%EC%9A%A9%EC%9D%B8"
+          "label": "테이블링 영업시간·주차",
+          "url": "https://www.tabling.co.kr/place/677ccb0866de5f06987c82d7"
         }
       ]
     },
     {
-      "id": "limegrass",
-      "name": "라임그라스",
-      "area": "용인 기흥",
-      "type": "대형 카페",
-      "lat": 37.255,
-      "lng": 127.13,
-      "americanoPrice": 6000,
-      "parkingSummary": "넓은 주차 추정",
+      "id": "starbucks-gwanggyo-lakecity",
+      "name": "스타벅스 광교더샵레이크시티",
+      "area": "수원 광교",
+      "type": "프랜차이즈 카페",
+      "lat": 37.2849,
+      "lng": 127.0759,
+      "openTime": "07:00",
+      "americanoPrice": 4700,
+      "parkingSummary": "주차 가능",
       "freeOrSupportedParking": true,
-      "confidence": "확인필요",
-      "tags": [
-        "정원",
-        "신갈권",
-        "대형"
-      ],
+      "confidence": "검증됨",
+      "tags": ["07:00 오픈", "광교호수", "넓은 편"],
       "scores": {
-        "work": 7,
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 8,
-        "access": 7,
-        "lunch": 6.5,
-        "capacity": 8,
-        "weekendCalm": 7
+        "parkingBenefit": 8,
+        "parkingCapacity": 7.5,
+        "openEarly": 10,
+        "weekendCalm": 6,
+        "work": 7.5,
+        "access": 8
       },
-      "notes": "휴식형 모임에 좋지만 점심 연계와 전원 좌석 정보는 더 확인해야 합니다.",
-      "mapQuery": "라임그라스 용인",
+      "notes": "07:00 오픈, 주차 가능, 광교호수권 접근성을 모두 충족합니다. 리뷰상 내부가 넓은 편이라는 장점이 있어 광교 후보 중 균형이 좋습니다.",
+      "mapQuery": "스타벅스 광교더샵레이크시티점",
       "sources": [
         {
-          "label": "지도 검색",
-          "url": "https://map.naver.com/p/search/%EB%9D%BC%EC%9E%84%EA%B7%B8%EB%9D%BC%EC%8A%A4%20%EC%9A%A9%EC%9D%B8"
+          "label": "테이블링 영업시간·주차",
+          "url": "https://www.tabling.co.kr/place/677cd47c66de5f06988d7d55"
         }
       ]
+    },
+    {
+      "id": "starbucks-suwon-lawtown",
+      "name": "스타벅스 수원법조타운",
+      "area": "수원 광교",
+      "type": "프랜차이즈 카페",
+      "lat": 37.2913,
+      "lng": 127.0708,
+      "openTime": "07:00",
+      "americanoPrice": 4700,
+      "parkingSummary": "주차 가능",
+      "freeOrSupportedParking": true,
+      "confidence": "검증됨",
+      "tags": ["07:00 오픈", "법조타운", "식사 연계"],
+      "scores": {
+        "parkingBenefit": 8,
+        "parkingCapacity": 7,
+        "openEarly": 10,
+        "weekendCalm": 6.5,
+        "work": 7,
+        "access": 8
+      },
+      "notes": "법조타운 상권이라 점심 연계와 접근성이 좋습니다. 주차 가능으로 확인되지만 상가형 주차라 장시간 무료 여부는 방문 전 재확인이 필요합니다.",
+      "mapQuery": "스타벅스 수원법조타운점",
+      "sources": [
+        {
+          "label": "테이블링 영업시간·주차",
+          "url": "https://www.tabling.co.kr/place/677cd40566de5f06988ca0b5"
+        }
+      ]
+    },
+    {
+      "id": "starbucks-yongin-gogi-dong",
+      "name": "스타벅스 용인고기동유원지",
+      "area": "용인 수지",
+      "type": "외곽 카페",
+      "lat": 37.3454,
+      "lng": 127.0839,
+      "openTime": "07:00",
+      "americanoPrice": 4700,
+      "parkingSummary": "주차 가능",
+      "freeOrSupportedParking": true,
+      "confidence": "검증됨",
+      "tags": ["07:00 오픈", "고기동", "외곽", "주말 나들이 혼잡 주의"],
+      "scores": {
+        "parkingBenefit": 8,
+        "parkingCapacity": 7.5,
+        "openEarly": 10,
+        "weekendCalm": 5,
+        "work": 6.5,
+        "access": 6.5
+      },
+      "notes": "수지권이지만 고기동 외곽이라 접근성은 낮습니다. 07:00 오픈과 주차 가능은 좋지만 주말 나들이 차량 유입 가능성을 감점했습니다.",
+      "mapQuery": "스타벅스 용인고기동유원지점",
+      "sources": [
+        {
+          "label": "테이블링 영업시간·주차",
+          "url": "https://www.tabling.co.kr/place/677cd6d366de5f069891ae36"
+        }
+      ]
+    }
+  ],
+  "excludedExamples": [
+    {
+      "name": "본누벨 베이커리",
+      "reason": "09:30 오픈이라 07:30 조건 미충족"
+    },
+    {
+      "name": "카페 수지",
+      "reason": "10:30 오픈이라 07:30 조건 미충족"
+    },
+    {
+      "name": "오봉베르",
+      "reason": "10:00 오픈 및 주차 불가로 조건 미충족"
+    },
+    {
+      "name": "스타벅스 광교갤러리아9F",
+      "reason": "10:30 오픈이라 07:30 조건 미충족"
     }
   ]
 }

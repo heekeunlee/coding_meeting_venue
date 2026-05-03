@@ -1,12 +1,11 @@
 const weights = {
-  parkingBenefit: 0.24,
-  parkingCapacity: 0.20,
-  weekendCalm: 0.16,
-  work: 0.14,
-  access: 0.10,
-  price: 0.06,
-  lunch: 0.06,
-  capacity: 0.04
+  parkingBenefit: 0.35,
+  parkingCapacity: 0.25,
+  openEarly: 0.15,
+  weekendCalm: 0.10,
+  work: 0.08,
+  access: 0.04,
+  price: 0.03
 };
 
 const mapLimit = 15;
@@ -196,7 +195,7 @@ function renderMap(venues) {
     const position = positions.get(venue.id);
     const marker = L.marker(position, { icon: markerIcon(rank, parkingScore) })
       .addTo(state.map)
-      .bindPopup(`<strong>${rank}위 ${escapeHtml(venue.name)}</strong><br>${venue.overall.toFixed(1)}점 · 주차 ${parkingScore.toFixed(1)}점 · 혼잡회피 ${venue.scores.weekendCalm.toFixed(1)}점<br>${escapeHtml(venue.parkingSummary)}`);
+      .bindPopup(`<strong>${rank}위 ${escapeHtml(venue.name)}</strong><br>${venue.overall.toFixed(1)}점 · ${escapeHtml(venue.openTime)} 오픈<br>주차 ${parkingScore.toFixed(1)}점 · 혼잡회피 ${venue.scores.weekendCalm.toFixed(1)}점<br>${escapeHtml(venue.parkingSummary)}`);
     state.markers.push(marker);
   });
 
@@ -238,7 +237,7 @@ function renderList(venues) {
         <div>
           <span class="rank">${index + 1}위</span>
           <h3>${escapeHtml(venue.name)}</h3>
-          <div class="meta">${escapeHtml(venue.area)} · ${escapeHtml(venue.type)} · 아메리카노 ${price}</div>
+          <div class="meta">${escapeHtml(venue.area)} · ${escapeHtml(venue.type)} · ${escapeHtml(venue.openTime)} 오픈 · 아메리카노 ${price}</div>
         </div>
         <div class="score">
           <strong>${venue.overall.toFixed(1)}</strong>
@@ -254,10 +253,10 @@ function renderList(venues) {
         ${scoreLine("작업", venue.scores.work)}
         ${scoreLine("주차혜택", venue.scores.parkingBenefit)}
         ${scoreLine("주차여유", venue.scores.parkingCapacity)}
+        ${scoreLine("오픈시간", venue.scores.openEarly)}
         ${scoreLine("혼잡회피", venue.scores.weekendCalm)}
         ${scoreLine("접근성", venue.scores.access)}
         ${scoreLine("가격", venue.scores.price)}
-        ${scoreLine("점심", venue.scores.lunch)}
       </div>
       <p class="notes">${escapeHtml(venue.notes)}</p>
       <div class="actions">

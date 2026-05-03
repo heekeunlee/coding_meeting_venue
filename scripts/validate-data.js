@@ -12,6 +12,7 @@ const required = [
   "type",
   "lat",
   "lng",
+  "openTime",
   "americanoPrice",
   "parkingSummary",
   "freeOrSupportedParking",
@@ -22,7 +23,7 @@ const required = [
   "sources"
 ];
 
-const scoreKeys = ["work", "parkingBenefit", "parkingCapacity", "weekendCalm", "access", "lunch", "capacity"];
+const scoreKeys = ["work", "parkingBenefit", "parkingCapacity", "openEarly", "weekendCalm", "access"];
 const ids = new Set();
 const errors = [];
 
@@ -46,6 +47,12 @@ for (const venue of venues) {
   }
   if (typeof venue.americanoPrice !== "number" || venue.americanoPrice < 1000 || venue.americanoPrice > 9000) {
     fail(venue.id, `americanoPrice suspicious: ${venue.americanoPrice}`);
+  }
+  if (!/^0[0-7]:[0-5][0-9]$/.test(venue.openTime) || venue.openTime > "07:30") {
+    fail(venue.id, `openTime must be 07:30 or earlier: ${venue.openTime}`);
+  }
+  if (!["용인 수지", "수원 광교"].includes(venue.area)) {
+    fail(venue.id, `area is outside Suji/Gwanggyo scope: ${venue.area}`);
   }
 
   for (const key of scoreKeys) {
