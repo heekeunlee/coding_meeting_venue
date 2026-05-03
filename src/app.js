@@ -29,7 +29,9 @@ const els = {
   bestTravel: document.getElementById("best-travel"),
   bestParking: document.getElementById("best-parking"),
   weightChart: document.getElementById("weight-chart"),
-  originList: document.getElementById("origin-list")
+  originList: document.getElementById("origin-list"),
+  sketchMap: document.getElementById("sketch-map"),
+  sketchMapCount: document.getElementById("sketch-map-count")
 };
 
 function escapeHtml(value) {
@@ -206,6 +208,74 @@ function renderOrigins() {
   });
 }
 
+function projectPoint(point, bounds, width, height, padding) {
+  const xRatio = (point.lng - bounds.minLng) / (bounds.maxLng - bounds.minLng || 1);
+  const yRatio = (bounds.maxLat - point.lat) / (bounds.maxLat - bounds.minLat || 1);
+  return {
+    x: padding + xRatio * (width - padding * 2),
+    y: padding + yRatio * (height - padding * 2)
+  };
+}
+
+function renderSketchMap(venues) {
+  const topVenues = venues.slice(0, 5);
+  const points = [...state.origins, ...topVenues];
+  const width = 900;
+  const height = 360;
+  const padding = 54;
+  const bounds = points.reduce((acc, point) => ({
+    minLat: Math.min(acc.minLat, point.lat),
+    maxLat: Math.max(acc.maxLat, point.lat),
+    minLng: Math.min(acc.minLng, point.lng),
+    maxLng: Math.max(acc.maxLng, point.lng)
+  }), {
+    minLat: Infinity,
+    maxLat: -Infinity,
+    minLng: Infinity,
+    maxLng: -Infinity
+  });
+
+  const originNodes = state.origins.map((origin) => {
+    const p = projectPoint(origin, bounds, width, height, padding);
+    return `
+      <g class="map-origin" transform="translate(${p.x}, ${p.y})">
+        <circle r="8"></circle>
+        <text x="13" y="4">${escapeHtml(origin.name)}</text>
+      </g>
+    `;
+  }).join("");
+
+  const venueNodes = topVenues.map((venue, index) => {
+    const p = projectPoint(venue, bounds, width, height, padding);
+    return `
+      <g class="map-venue" transform="translate(${p.x}, ${p.y})">
+        <circle r="13"></circle>
+        <text class="map-rank" y="4">${index + 1}</text>
+        <text class="map-label" x="18" y="4">${escapeHtml(venue.name)}</text>
+      </g>
+    `;
+  }).join("");
+
+  els.sketchMapCount.textContent = `${topVenues.length}개 후보 표시`;
+  els.sketchMap.innerHTML = `
+    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="4명 거주지와 상위 후보 위치도">
+      <rect class="map-bg" x="0" y="0" width="${width}" height="${height}" rx="8"></rect>
+      <path class="map-road primary" d="M80 285 C210 210, 310 190, 430 210 S680 260, 820 90"></path>
+      <path class="map-road" d="M115 105 C250 145, 360 130, 500 115 S700 125, 790 170"></path>
+      <path class="map-road" d="M235 320 C300 250, 360 205, 450 170 S590 110, 660 50"></path>
+      <text class="map-area" x="72" y="82">수지</text>
+      <text class="map-area" x="474" y="70">신갈·영통</text>
+      <text class="map-area" x="700" y="308">망포·매탄</text>
+      ${originNodes}
+      ${venueNodes}
+    </svg>
+    <div class="sketch-legend">
+      <span><i class="origin-dot"></i>거주지</span>
+      <span><i class="venue-dot"></i>상위 후보</span>
+    </div>
+  `;
+}
+
 function renderTrips(venue) {
   return venue.trips.map((trip) => `
     <div class="trip">
@@ -283,6 +353,7 @@ function renderExcluded() {
 function render() {
   const venues = filteredVenues();
   renderInsights(venues);
+  renderSketchMap(venues);
   renderList(venues);
 }
 

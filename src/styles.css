@@ -277,6 +277,134 @@ select {
   margin-bottom: 18px;
 }
 
+.sketch-map-panel {
+  padding: 18px;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.sketch-map-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.sketch-map-header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.sketch-map-header span {
+  padding: 6px 9px;
+  border-radius: 6px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.sketch-map {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.sketch-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 280px;
+}
+
+.map-bg {
+  fill: #f8fafc;
+}
+
+.map-road {
+  fill: none;
+  stroke: #cbd5e1;
+  stroke-width: 7;
+  stroke-linecap: round;
+  opacity: 0.78;
+}
+
+.map-road.primary {
+  stroke: #94a3b8;
+  stroke-width: 10;
+  opacity: 0.66;
+}
+
+.map-area {
+  fill: #94a3b8;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.map-origin circle {
+  fill: var(--rose);
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+.map-origin text,
+.map-label {
+  fill: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.map-venue circle {
+  fill: var(--green);
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+.map-rank {
+  fill: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.sketch-legend {
+  display: flex;
+  gap: 14px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.origin-dot,
+.venue-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 999px;
+}
+
+.origin-dot {
+  background: var(--rose);
+}
+
+.venue-dot {
+  background: var(--green);
+}
+
 .origin-panel p {
   margin: 0;
   color: var(--muted);
@@ -530,6 +658,10 @@ select {
   .method,
   .origin-panel {
     grid-template-columns: 1fr;
+  }
+
+  .sketch-map-header {
+    flex-direction: column;
   }
 
   .origin-list {
