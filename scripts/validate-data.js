@@ -4,6 +4,7 @@ const path = require("path");
 const file = path.join(__dirname, "..", "data", "venues.json");
 const payload = JSON.parse(fs.readFileSync(file, "utf8"));
 const venues = payload.venues;
+const origins = payload.origins;
 
 const required = [
   "id",
@@ -24,12 +25,16 @@ const required = [
   "sources"
 ];
 
-const scoreKeys = ["work", "parkingBenefit", "parkingCapacity", "openEarly", "weekendCalm", "access"];
+const scoreKeys = ["parking", "work", "weekendCalm", "lunch"];
 const ids = new Set();
 const errors = [];
 
 function fail(id, message) {
   errors.push(`${id || "unknown"}: ${message}`);
+}
+
+if (!Array.isArray(origins) || origins.length !== 4) {
+  fail("origins", "exactly four origins are required");
 }
 
 for (const venue of venues) {
@@ -41,19 +46,13 @@ for (const venue of venues) {
   ids.add(venue.id);
 
   if (typeof venue.lat !== "number" || venue.lat < 37.15 || venue.lat > 37.36) {
-    fail(venue.id, `lat out of Yongin/Suwon review bounds: ${venue.lat}`);
+    fail(venue.id, `lat out of review bounds: ${venue.lat}`);
   }
   if (typeof venue.lng !== "number" || venue.lng < 126.9 || venue.lng > 127.35) {
-    fail(venue.id, `lng out of Yongin/Suwon review bounds: ${venue.lng}`);
+    fail(venue.id, `lng out of review bounds: ${venue.lng}`);
   }
-  if (typeof venue.americanoPrice !== "number" || venue.americanoPrice < 1000 || venue.americanoPrice > 9000) {
-    fail(venue.id, `americanoPrice suspicious: ${venue.americanoPrice}`);
-  }
-  if (!/^0[0-7]:[0-5][0-9]$/.test(venue.openTime) || venue.openTime > "07:30") {
-    fail(venue.id, `openTime must be 07:30 or earlier: ${venue.openTime}`);
-  }
-  if (!venue.area.startsWith("용인 ") && !venue.area.startsWith("수원 ")) {
-    fail(venue.id, `area is outside Yongin/Suwon scope: ${venue.area}`);
+  if (typeof venue.americanoPrice !== "number" || venue.americanoPrice > 5000) {
+    fail(venue.id, `americanoPrice must be <= 5000: ${venue.americanoPrice}`);
   }
   if (venue.freeOrSupportedParking !== true || !venue.parkingSummary.includes("무료")) {
     fail(venue.id, "parking must be free or purchase-supported free");
@@ -74,13 +73,9 @@ for (const venue of venues) {
   }
 }
 
-if (venues.length === 0) {
-  console.warn("WARN: no venues match the active constraints");
-}
-
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`OK: ${venues.length} venues validated`);
+console.log(`OK: ${origins.length} origins, ${venues.length} venues validated`);

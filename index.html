@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>용인·수원 아침 코딩 소모임 장소 비교</title>
-  <meta name="description" content="용인·수원 일대 스타벅스 중 오전 7:30 이전 오픈, 주차 20대 이상, 완전 무료 주차 조건을 검토합니다.">
+  <title>일요일 코딩 소모임 장소 최적화</title>
+  <meta name="description" content="용인수지, 용인신갈, 수원망포, 수원매탄 4명이 모이기 좋은 카페와 모임 장소를 거리, 주차, 가격, 작업성 기준으로 비교합니다.">
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQnyrKpi8tAStZD3DZbNCzK8x47z4Ec=" crossorigin="">
   <link rel="stylesheet" href="src/styles.css">
@@ -12,9 +12,9 @@
 <body>
   <header class="app-header">
     <div>
-      <p class="eyebrow">Early Weekend Coding Venue Index</p>
-      <h1>용인·수원 아침 코딩 장소 비교</h1>
-      <p class="summary">스타벅스 중 07:30 이전 오픈, 주차 20대 이상, 완전 무료 주차 조건만 허용합니다.</p>
+      <p class="eyebrow">Sunday Coding Venue Optimizer</p>
+      <h1>4명 기준 코딩 소모임 장소 추천</h1>
+      <p class="summary">용인수지 · 용인신갈 · 수원망포 · 수원매탄에서의 이동 균형과 주차, 가격, 노트북 작업성을 함께 계산합니다.</p>
     </div>
     <div class="header-stat" aria-label="후보 장소 수">
       <span id="venue-count">0</span>
@@ -28,80 +28,81 @@
         <label for="search">검색</label>
         <input id="search" type="search" placeholder="장소명, 지역, 특징">
       </div>
-
       <div class="control-grid">
         <label>
           지역
-          <select id="area-filter">
-            <option value="all">전체</option>
-          </select>
+          <select id="area-filter"><option value="all">전체</option></select>
         </label>
         <label>
           유형
-          <select id="type-filter">
-            <option value="all">전체</option>
-          </select>
+          <select id="type-filter"><option value="all">전체</option></select>
         </label>
         <label>
           정렬
           <select id="sort-by">
-            <option value="overall">무료주차 우선 종합점수</option>
+            <option value="overall">종합 추천</option>
+            <option value="travel">이동 균형</option>
             <option value="parking">주차</option>
             <option value="work">노트북 작업</option>
-            <option value="price">아메리카노 가격</option>
-            <option value="access">접근성</option>
+            <option value="price">가격</option>
           </select>
         </label>
       </div>
-
       <div class="toggle-row">
-        <label><input id="free-parking-only" type="checkbox"> 무료/지원 주차만</label>
-        <label><input id="work-friendly-only" type="checkbox"> 작업 적합 8점 이상</label>
+        <label><input id="parking-only" type="checkbox" checked> 주차 20대 이상</label>
+        <label><input id="price-only" type="checkbox" checked> 아메리카노 5,000원 이하</label>
         <label><input id="verified-only" type="checkbox"> 검증 정보 우선</label>
-      </div>
-    </section>
-
-    <section class="map-shell" aria-label="장소 지도">
-      <div id="map"></div>
-      <div class="map-legend">
-        <span><i class="pin best"></i>주차 강점</span>
-        <span><i class="pin normal"></i>후보</span>
-        <span><i class="pin base"></i>성복역 기준</span>
-        <span id="map-count">0개 지도 표시</span>
       </div>
     </section>
 
     <section class="insight-grid" aria-label="추천 요약">
       <article>
-        <span class="metric-label">주말 오전 작업</span>
-        <strong id="best-work">-</strong>
+        <span class="metric-label">최종 1순위</span>
+        <strong id="best-overall">-</strong>
       </article>
       <article>
-        <span class="metric-label">주차 스트레스 최소</span>
+        <span class="metric-label">이동 균형 최상</span>
+        <strong id="best-travel">-</strong>
+      </article>
+      <article>
+        <span class="metric-label">주차 최상</span>
         <strong id="best-parking">-</strong>
       </article>
-      <article>
-        <span class="metric-label">가성비 우선</span>
-        <strong id="best-price">-</strong>
-      </article>
+    </section>
+
+    <section class="map-shell" aria-label="장소 지도">
+      <div id="map"></div>
+      <div class="map-legend">
+        <span><i class="pin base"></i>거주지</span>
+        <span><i class="pin best"></i>추천 후보</span>
+        <span id="map-count">0개 지도 표시</span>
+      </div>
     </section>
 
     <section class="method">
       <h2>평가 방식</h2>
-      <p>현재 조건은 주차 20대 이상, 조건 없는 완전 무료 주차, 07:30 이전 오픈입니다. 결제 등록, 1만원 이상 구매, 1~2시간 무료 같은 조건부 무료 주차 매장은 제외했습니다.</p>
+      <p>종합점수는 이동 균형 30%, 주차 28%, 노트북 작업성 18%, 가격 12%, 주말 혼잡 회피 7%, 점심 연계 5%입니다. 이동시간은 좌표 기반 추정치라 실제 출발 전 지도 앱에서 재확인해야 합니다.</p>
     </section>
 
     <section>
       <div class="list-header">
-        <h2>후보 리스트</h2>
+        <h2>추천 후보</h2>
         <span id="result-count">0개 표시</span>
       </div>
       <div id="venue-list" class="venue-list"></div>
     </section>
+
+    <section>
+      <div class="list-header">
+        <h2>제외한 후보</h2>
+        <span>조건 미충족</span>
+      </div>
+      <div id="excluded-list" class="excluded-list"></div>
+    </section>
   </main>
 
   <footer class="app-footer">
-    <p>영업시간·주차 정책은 2026-05-03 기준 공개 웹 정보와 리뷰 기반입니다. 방문 전 매장 공지와 지도 앱을 재확인하세요.</p>
+    <p>영업시간, 주차 정책, 메뉴 가격은 2026-05-03 기준 공개 웹 정보 기반입니다. 매주 일요일 모임 전에는 매장 공지와 지도 앱을 재확인하세요.</p>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
