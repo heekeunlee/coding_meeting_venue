@@ -213,14 +213,20 @@ function renderOrigins() {
 }
 
 function createMap() {
+  const bounds = L.latLngBounds([37.12, 126.86], [37.38, 127.42]);
+
   state.map = L.map("sketch-map", {
     zoomControl: true,
     scrollWheelZoom: false,
+    doubleClickZoom: false,
+    tap: false,
     attributionControl: true,
     zoomAnimation: false,
     fadeAnimation: false,
     markerZoomAnimation: false,
-    preferCanvas: true
+    preferCanvas: true,
+    maxBounds: bounds,
+    maxBoundsViscosity: 1
   }).setView([37.273, 127.075], 11);
 
   state.tileLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -233,7 +239,8 @@ function createMap() {
     attribution: "&copy; OpenStreetMap"
   }).addTo(state.map);
 
-  window.setTimeout(() => state.map.invalidateSize(), 150);
+  window.requestAnimationFrame(() => state.map.invalidateSize(false));
+  window.setTimeout(() => state.map.invalidateSize(false), 180);
 }
 
 function markerIcon(type, label) {
@@ -274,9 +281,13 @@ function renderSketchMap(venues) {
       maxZoom: 12
     });
     window.setTimeout(() => {
-      state.map.invalidateSize();
+      state.map.invalidateSize(false);
       state.tileLayer.redraw();
     }, 120);
+    window.setTimeout(() => {
+      state.map.invalidateSize(false);
+      state.tileLayer.redraw();
+    }, 420);
   }
 }
 

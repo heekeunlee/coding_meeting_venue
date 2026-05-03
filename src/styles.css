@@ -283,6 +283,7 @@ select {
   margin-bottom: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
+  overflow: hidden;
   background: var(--paper);
   box-shadow: var(--shadow);
 }
@@ -320,11 +321,41 @@ select {
 }
 
 .actual-map {
+  position: relative;
   width: 100%;
   height: 500px;
   min-height: 500px;
+  overflow: hidden;
   background: #dfe6ee;
+  contain: layout paint;
   isolation: isolate;
+  z-index: 0;
+}
+
+.actual-map.leaflet-container {
+  position: relative !important;
+  overflow: hidden !important;
+  contain: layout paint;
+  background: #dfe6ee;
+}
+
+.actual-map,
+.actual-map * {
+  box-sizing: content-box;
+}
+
+.actual-map .leaflet-control-container,
+.actual-map .leaflet-control-container * {
+  box-sizing: border-box;
+}
+
+.actual-map .leaflet-pane,
+.actual-map .leaflet-tile,
+.actual-map .leaflet-marker-icon,
+.actual-map .leaflet-marker-shadow,
+.actual-map .leaflet-tooltip,
+.actual-map .leaflet-popup {
+  position: absolute !important;
 }
 
 .actual-map .leaflet-tile-container {
