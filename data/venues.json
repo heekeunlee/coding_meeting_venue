@@ -2,13 +2,33 @@
   "updatedAt": "2026-05-03",
   "scope": "용인수지·용인신갈·수원망포·수원매탄 4명 기준, 주차 20대 이상, 무료/구매시 무료 주차, 아메리카노 5,000원 이하, 노트북 작업 가능 후보",
   "origins": [
-    { "id": "suji", "name": "용인수지", "lat": 37.3221, "lng": 127.0950 },
-    { "id": "singal", "name": "용인신갈", "lat": 37.2860, "lng": 127.1110 },
-    { "id": "mangpo", "name": "수원망포", "lat": 37.2455, "lng": 127.0574 },
-    { "id": "maetan", "name": "수원매탄", "lat": 37.2527, "lng": 127.0405 }
+    {
+      "id": "suji",
+      "name": "용인수지",
+      "lat": 37.3221,
+      "lng": 127.095
+    },
+    {
+      "id": "singal",
+      "name": "용인신갈",
+      "lat": 37.286,
+      "lng": 127.111
+    },
+    {
+      "id": "mangpo",
+      "name": "수원망포",
+      "lat": 37.2455,
+      "lng": 127.0574
+    },
+    {
+      "id": "maetan",
+      "name": "수원매탄",
+      "lat": 37.2527,
+      "lng": 127.0405
+    }
   ],
   "scoring": {
-    "travelFairness": 0.30,
+    "travelFairness": 0.3,
     "parking": 0.28,
     "work": 0.18,
     "price": 0.12,
@@ -29,12 +49,25 @@
       "parkingSpaces": 50,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["망포역", "50대 이상", "구매시 무료", "역세권"],
-      "scores": { "parking": 9.1, "work": 8.0, "weekendCalm": 6.5, "lunch": 9.0 },
+      "tags": [
+        "망포역",
+        "50대 이상",
+        "구매시 무료",
+        "역세권"
+      ],
+      "scores": {
+        "parking": 9.1,
+        "work": 8,
+        "weekendCalm": 6.5,
+        "lunch": 9
+      },
       "notes": "망포·매탄 참여자에게 압도적으로 가깝고 주차 50대 이상입니다. 수지 참여자는 가장 멀지만 전체 평균 이동시간이 낮아 1순위 후보입니다.",
       "mapQuery": "스타벅스 수원망포역점",
       "sources": [
-        { "label": "매장 상세정보", "url": "https://msg.soledot.com/starbucksstore/fo/847/starbucksstoreview.sd" }
+        {
+          "label": "매장 상세정보",
+          "url": "https://msg.soledot.com/starbucksstore/fo/847/starbucksstoreview.sd"
+        }
       ]
     },
     {
@@ -50,13 +83,29 @@
       "parkingSpaces": 50,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["광교호수", "50대 이상", "전망", "구매시 무료"],
-      "scores": { "parking": 8.7, "work": 7.4, "weekendCalm": 4.8, "lunch": 9.0 },
+      "tags": [
+        "광교호수",
+        "50대 이상",
+        "전망",
+        "구매시 무료"
+      ],
+      "scores": {
+        "parking": 8.7,
+        "work": 7.4,
+        "weekendCalm": 4.8,
+        "lunch": 9
+      },
       "notes": "네 명의 중간 지점에 가깝고 주차 여유도 좋습니다. 다만 주말 인기 매장이라 좌석 확보 난도가 높아 혼잡도에서 감점했습니다.",
       "mapQuery": "스타벅스 광교SK뷰레이크41F점",
       "sources": [
-        { "label": "테이블링 매장정보", "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41" },
-        { "label": "주차 후기", "url": "https://im-info.tistory.com/entry/%EC%BB%A4%ED%94%BC-%EB%B7%B0-%EB%A7%9B%EC%A7%91-%EA%B4%91%EA%B5%90-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4-41%EC%B8%B5-%EA%B3%A0%EC%B8%B5-%EC%A3%BC%EC%B0%A8-%EA%BF%80%ED%8C%81?category=1153242" }
+        {
+          "label": "테이블링 매장정보",
+          "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
+        },
+        {
+          "label": "주차 후기",
+          "url": "https://im-info.tistory.com/entry/%EC%BB%A4%ED%94%BC-%EB%B7%B0-%EB%A7%9B%EC%A7%91-%EA%B4%91%EA%B5%90-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4-41%EC%B8%B5-%EA%B3%A0%EC%B8%B5-%EC%A3%BC%EC%B0%A8-%EA%BF%80%ED%8C%81?category=1153242"
+        }
       ]
     },
     {
@@ -72,12 +121,25 @@
       "parkingSpaces": 50,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["광교중앙", "50대 이상", "식사연계", "구매시 무료"],
-      "scores": { "parking": 8.5, "work": 7.2, "weekendCalm": 6.0, "lunch": 9.2 },
+      "tags": [
+        "광교중앙",
+        "50대 이상",
+        "식사연계",
+        "구매시 무료"
+      ],
+      "scores": {
+        "parking": 8.5,
+        "work": 7.2,
+        "weekendCalm": 6,
+        "lunch": 9.2
+      },
       "notes": "광교중앙 상권과 식사 연계가 좋습니다. 1만원 이상 조건이라 4명이 음료를 사면 무료 조건 충족이 쉽습니다.",
       "mapQuery": "스타벅스 수원광교점",
       "sources": [
-        { "label": "테이블링 매장정보", "url": "https://www.tabling.co.kr/place/677ccb0866de5f06987c82d7" }
+        {
+          "label": "테이블링 매장정보",
+          "url": "https://www.tabling.co.kr/place/677ccb0866de5f06987c82d7"
+        }
       ]
     },
     {
@@ -93,12 +155,25 @@
       "parkingSpaces": 30,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["법조타운", "30대 이상", "2시간 무료", "식사연계"],
-      "scores": { "parking": 8.8, "work": 7.3, "weekendCalm": 6.3, "lunch": 8.6 },
+      "tags": [
+        "법조타운",
+        "30대 이상",
+        "2시간 무료",
+        "식사연계"
+      ],
+      "scores": {
+        "parking": 8.8,
+        "work": 7.3,
+        "weekendCalm": 6.3,
+        "lunch": 8.6
+      },
       "notes": "수지·신갈 쪽 접근성이 좋고 결제 시 2시간 무료 등록이 명확합니다. 주차대수는 광교 대형 후보보다 적지만 4명 모임에는 충분한 편입니다.",
       "mapQuery": "스타벅스 수원법조타운점",
       "sources": [
-        { "label": "테이블링 매장정보", "url": "https://www.tabling.co.kr/place/677cd40566de5f06988ca0b5" }
+        {
+          "label": "테이블링 매장정보",
+          "url": "https://www.tabling.co.kr/place/677cd40566de5f06988ca0b5"
+        }
       ]
     },
     {
@@ -114,12 +189,25 @@
       "parkingSpaces": 40,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["DT", "40대", "음식점 합산", "구매시 무료"],
-      "scores": { "parking": 8.8, "work": 6.8, "weekendCalm": 6.8, "lunch": 8.0 },
+      "tags": [
+        "DT",
+        "40대",
+        "음식점 합산",
+        "구매시 무료"
+      ],
+      "scores": {
+        "parking": 8.8,
+        "work": 6.8,
+        "weekendCalm": 6.8,
+        "lunch": 8
+      },
       "notes": "주차와 식사 합산 조건은 좋지만 네 명의 거주지 기준으로 서쪽에 치우쳐 수지·신갈 이동 부담이 큽니다.",
       "mapQuery": "스타벅스 수원권선DT점",
       "sources": [
-        { "label": "매장 상세정보", "url": "https://msg.soledot.com/starbucksstore/fo/632/starbucksstoreview.sd" }
+        {
+          "label": "매장 상세정보",
+          "url": "https://msg.soledot.com/starbucksstore/fo/632/starbucksstoreview.sd"
+        }
       ]
     },
     {
@@ -135,12 +223,25 @@
       "parkingSpaces": 35,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["DT", "35대", "전용주차", "구매시 무료"],
-      "scores": { "parking": 8.6, "work": 7.0, "weekendCalm": 7.2, "lunch": 6.5 },
+      "tags": [
+        "DT",
+        "35대",
+        "전용주차",
+        "구매시 무료"
+      ],
+      "scores": {
+        "parking": 8.6,
+        "work": 7,
+        "weekendCalm": 7.2,
+        "lunch": 6.5
+      },
       "notes": "주차는 좋지만 네 명의 중심에서 동쪽으로 멀어 전체 이동 균형은 낮습니다. 처인권 일정이 있을 때 예비 후보입니다.",
       "mapQuery": "스타벅스 용인김량장DT점",
       "sources": [
-        { "label": "매장 상세정보", "url": "https://msg.soledot.com/starbucksstore/fo/713/starbucksstoreview.sd" }
+        {
+          "label": "매장 상세정보",
+          "url": "https://msg.soledot.com/starbucksstore/fo/713/starbucksstoreview.sd"
+        }
       ]
     },
     {
@@ -149,19 +250,31 @@
       "area": "수원 권선",
       "type": "프랜차이즈 카페",
       "lat": 37.2558,
-      "lng": 127.0190,
+      "lng": 127.019,
       "openTime": "일 08:00",
       "americanoPrice": 4700,
       "parkingSummary": "상가 지하 30대 이상, 구매 시 최대 2시간 무료",
       "parkingSpaces": 30,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["30대 이상", "구매시 무료", "권선동"],
-      "scores": { "parking": 8.1, "work": 7.0, "weekendCalm": 6.2, "lunch": 8.0 },
+      "tags": [
+        "30대 이상",
+        "구매시 무료",
+        "권선동"
+      ],
+      "scores": {
+        "parking": 8.1,
+        "work": 7,
+        "weekendCalm": 6.2,
+        "lunch": 8
+      },
       "notes": "매탄에서는 가깝고 주차 조건도 무난하지만 수지·신갈에서는 우회 이동이 생깁니다.",
       "mapQuery": "스타벅스 수원권선점",
       "sources": [
-        { "label": "매장 상세정보", "url": "https://msg.soledot.com/starbucksstore/fo/633/starbucksstoreview.sd" }
+        {
+          "label": "매장 상세정보",
+          "url": "https://msg.soledot.com/starbucksstore/fo/633/starbucksstoreview.sd"
+        }
       ]
     },
     {
@@ -177,21 +290,110 @@
       "parkingSpaces": 20,
       "freeOrSupportedParking": true,
       "confidence": "검증됨",
-      "tags": ["20대", "구매시 무료", "호매실"],
-      "scores": { "parking": 7.8, "work": 6.8, "weekendCalm": 6.5, "lunch": 7.0 },
+      "tags": [
+        "20대",
+        "구매시 무료",
+        "호매실"
+      ],
+      "scores": {
+        "parking": 7.8,
+        "work": 6.8,
+        "weekendCalm": 6.5,
+        "lunch": 7
+      },
       "notes": "조건은 충족하지만 네 명의 거주지 기준으로 서쪽에 치우쳐 이동 균형 점수가 낮습니다.",
       "mapQuery": "스타벅스 수원호매실점",
       "sources": [
-        { "label": "매장 상세정보", "url": "https://msg.soledot.com/starbucksstore/fo/631/starbucksstoreview.sd" }
+        {
+          "label": "매장 상세정보",
+          "url": "https://msg.soledot.com/starbucksstore/fo/631/starbucksstoreview.sd"
+        }
+      ]
+    },
+    {
+      "id": "readx-kyunghee",
+      "name": "리드엑스 ReadX",
+      "area": "용인 기흥",
+      "type": "북카페",
+      "lat": 37.2474,
+      "lng": 127.0783,
+      "openTime": "일 10:00",
+      "americanoPrice": 5000,
+      "parkingSummary": "음료 또는 도서 구매 시 5시간 무료/지원, 스테이블경희 건물 주차 대형 규모",
+      "parkingSpaces": 170,
+      "freeOrSupportedParking": true,
+      "confidence": "부분검증",
+      "tags": [
+        "경희대 국제캠퍼스",
+        "북카페",
+        "5시간 주차",
+        "콘센트 많음",
+        "가격 확인 필요"
+      ],
+      "scores": {
+        "parking": 9.5,
+        "work": 9.8,
+        "weekendCalm": 8.4,
+        "lunch": 7.2
+      },
+      "notes": "노트북 작업성은 기존 후보 중 최상급입니다. 테이블 간격, 콘센트, 조용한 분위기, 5시간 주차 지원 근거가 있습니다. 다만 아메리카노 가격은 공개 자료에서 명확히 확인되지 않아 방문 전 재확인이 필요합니다.",
+      "mapQuery": "리드엑스 ReadX 용인 기흥 덕영대로 1698",
+      "sources": [
+        {
+          "label": "ReadX 방문 리뷰",
+          "url": "https://almond7.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B2%BD%ED%9D%AC%EB%8C%80-%EA%B5%AD%EC%A0%9C%EC%BA%A0%ED%8D%BC%EC%8A%A4-%EC%9D%B8%EA%B7%BC-%EB%B6%81%EC%B9%B4%ED%8E%98-ReadX-%E2%80%94-%EA%B3%B5%EB%B6%80%C2%B7%EB%8F%85%EC%84%9C%C2%B7%EC%9D%BC%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%A1%B0%EC%9A%A9%ED%95%9C-%EA%B0%90%EC%84%B1-%EA%B3%B5%EA%B0%84"
+        },
+        {
+          "label": "ReadX 작업 후기",
+          "url": "https://pandarank.net/contents/68e5f8c749988a70f7fc2fbc"
+        },
+        {
+          "label": "스테이블경희 건물 주차 참고",
+          "url": "https://cna.purpleo.co.kr/view/60886"
+        }
       ]
     }
   ],
   "excludedExamples": [
-    { "name": "카페 하이라이트 수원본점", "reason": "주차 200대 이상과 작업 공간은 좋지만 아메리카노 5,500원으로 가격 조건 초과", "source": "https://www.tabling.co.kr/place/677cd07366de5f069886185d" },
-    { "name": "시작 스터디 카페", "reason": "전 좌석 콘센트와 아메리카노 4,000원은 좋지만 주차 20대 이상 무료 조건을 확인하지 못함", "source": "https://booksmoa.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B3%B5%EB%B6%80%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%B9%B4%ED%8E%98-%ED%98%BC%EA%B3%B5%EC%A1%B1%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%B9%B4%ED%8E%98" },
-    { "name": "부카지트 매탄동", "reason": "24시간 북카페/스터디카페 성격은 좋지만 주차 20대 이상 무료 조건을 확인하지 못함", "source": "https://7505.tistory.com/entry/%EC%88%98%EC%9B%90-24%EC%8B%9C%EA%B0%84-%EB%AC%B4%EC%9D%B8%EC%B9%B4%ED%8E%98-%EB%B6%80%EC%B9%B4%EC%A7%80%ED%8A%B8-%EC%88%98%EC%9B%90-%EB%A7%A4%ED%83%84%EB%8F%99-%EB%B6%81%EC%B9%B4%ED%8E%98-%EC%8A%A4%ED%84%B0%EB%94%94%EC%B9%B4%ED%8E%98" },
-    { "name": "스타벅스 수원망포DT", "reason": "아메리카노와 위치는 좋지만 주차 7대로 20대 조건 미충족", "source": "https://msg.soledot.com/starbucksstore/fo/843/starbucksstoreview.sd" },
-    { "name": "스타벅스 용인보라DT", "reason": "신갈권 위치는 좋지만 주차 13대로 20대 조건 미충족", "source": "https://msg.soledot.com/starbucksstore/fo/703/starbucksstoreview.sd" },
-    { "name": "스타벅스 수원트레이더스", "reason": "주차와 가격은 좋지만 일요일 휴점 가능성이 있어 정기 일요일 모임 후보에서 제외", "source": "https://msg.soledot.com/starbucksstore/fo/845/starbucksstoreview.sd" }
+    {
+      "name": "카페 하이라이트 수원본점",
+      "reason": "주차 200대 이상과 작업 공간은 좋지만 아메리카노 5,500원으로 가격 조건 초과",
+      "source": "https://www.tabling.co.kr/place/677cd07366de5f069886185d"
+    },
+    {
+      "name": "시작 스터디 카페",
+      "reason": "전 좌석 콘센트와 아메리카노 4,000원은 좋지만 주차 20대 이상 무료 조건을 확인하지 못함",
+      "source": "https://booksmoa.tistory.com/entry/%EC%88%98%EC%9B%90-%EA%B3%B5%EB%B6%80%ED%95%98%EA%B8%B0-%EC%A2%8B%EC%9D%80-%EC%B9%B4%ED%8E%98-%ED%98%BC%EA%B3%B5%EC%A1%B1%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%B9%B4%ED%8E%98"
+    },
+    {
+      "name": "부카지트 매탄동",
+      "reason": "24시간 북카페/스터디카페 성격은 좋지만 주차 20대 이상 무료 조건을 확인하지 못함",
+      "source": "https://7505.tistory.com/entry/%EC%88%98%EC%9B%90-24%EC%8B%9C%EA%B0%84-%EB%AC%B4%EC%9D%B8%EC%B9%B4%ED%8E%98-%EB%B6%80%EC%B9%B4%EC%A7%80%ED%8A%B8-%EC%88%98%EC%9B%90-%EB%A7%A4%ED%83%84%EB%8F%99-%EB%B6%81%EC%B9%B4%ED%8E%98-%EC%8A%A4%ED%84%B0%EB%94%94%EC%B9%B4%ED%8E%98"
+    },
+    {
+      "name": "스타벅스 수원망포DT",
+      "reason": "아메리카노와 위치는 좋지만 주차 7대로 20대 조건 미충족",
+      "source": "https://msg.soledot.com/starbucksstore/fo/843/starbucksstoreview.sd"
+    },
+    {
+      "name": "스타벅스 용인보라DT",
+      "reason": "신갈권 위치는 좋지만 주차 13대로 20대 조건 미충족",
+      "source": "https://msg.soledot.com/starbucksstore/fo/703/starbucksstoreview.sd"
+    },
+    {
+      "name": "스타벅스 수원트레이더스",
+      "reason": "주차와 가격은 좋지만 일요일 휴점 가능성이 있어 정기 일요일 모임 후보에서 제외",
+      "source": "https://msg.soledot.com/starbucksstore/fo/845/starbucksstoreview.sd"
+    },
+    {
+      "name": "55데시벨",
+      "reason": "전 좌석 콘센트 등 작업성은 좋지만 주차 불가 또는 주차 20대 이상 근거가 없어 제외",
+      "source": "https://www.keyzard.cc/kyung456/nb/223591269471"
+    },
+    {
+      "name": "올탑스터디카페 경희대수원본점",
+      "reason": "스터디카페 성격은 적합하지만 주차 20대 이상 무료 조건을 확인하지 못해 제외",
+      "source": "https://place.udanax.org/place.php?id=1165050&placeName=%EC%98%AC%ED%83%91%EC%8A%A4%ED%84%B0%EB%94%94%EC%B9%B4%ED%8E%98+%EA%B2%BD%ED%9D%AC%EB%8C%80%EC%88%98%EC%9B%90%EB%B3%B8%EC%A0%90"
+    }
   ]
 }
