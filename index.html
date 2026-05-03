@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>일요일 코딩 소모임 장소 최적화</title>
   <meta name="description" content="용인수지, 용인신갈, 수원망포, 수원매탄 4명이 모이기 좋은 카페와 모임 장소를 거리, 주차, 가격, 작업성 기준으로 비교합니다.">
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQnyrKpi8tAStZD3DZbNCzK8x47z4Ec=" crossorigin="">
   <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
@@ -70,18 +68,43 @@
       </article>
     </section>
 
-    <section class="map-shell" aria-label="장소 지도">
-      <div id="map"></div>
-      <div class="map-legend">
-        <span><i class="pin base"></i>거주지</span>
-        <span><i class="pin best"></i>추천 후보</span>
-        <span id="map-count">0개 지도 표시</span>
+    <section class="method">
+      <div class="method-copy">
+        <h2>평가 방식</h2>
+        <p>4명이 매주 반복해서 쓰는 장소라서 한 사람에게만 유리한 위치를 피하고, 주차 실패 가능성과 실제 코딩 가능성을 함께 봅니다. 종합점수는 이동 균형 30%, 주차 28%, 노트북 작업성 18%, 가격 12%, 주말 혼잡 회피 7%, 점심 연계 5%입니다.</p>
       </div>
+      <div id="weight-chart" class="weight-chart" aria-label="평가 가중치"></div>
     </section>
 
-    <section class="method">
-      <h2>평가 방식</h2>
-      <p>종합점수는 이동 균형 30%, 주차 28%, 노트북 작업성 18%, 가격 12%, 주말 혼잡 회피 7%, 점심 연계 5%입니다. 이동시간은 좌표 기반 추정치라 실제 출발 전 지도 앱에서 재확인해야 합니다.</p>
+    <section class="principle-grid" aria-label="평가 원칙">
+      <article>
+        <span>1</span>
+        <h3>이동 균형</h3>
+        <p>평균 이동시간만 보지 않고 가장 오래 이동하는 사람과 편차까지 반영합니다.</p>
+      </article>
+      <article>
+        <span>2</span>
+        <h3>주차 실패 방지</h3>
+        <p>무료/구매시 무료 조건과 20대 이상 주차 가능성을 필수 조건으로 둡니다.</p>
+      </article>
+      <article>
+        <span>3</span>
+        <h3>코딩 지속성</h3>
+        <p>콘센트, 좌석 안정성, 조용함, 주말 혼잡도를 함께 반영합니다.</p>
+      </article>
+      <article>
+        <span>4</span>
+        <h3>가격 상한</h3>
+        <p>아메리카노 5,000원 이하를 기본 필터로 두고 반복 모임 비용을 낮춥니다.</p>
+      </article>
+    </section>
+
+    <section class="origin-panel">
+      <div>
+        <h2>출발지 기준</h2>
+        <p>이동시간은 좌표 기반 추정치입니다. 실제 시간은 일요일 교통과 출발 위치에 따라 달라질 수 있습니다.</p>
+      </div>
+      <div id="origin-list" class="origin-list"></div>
     </section>
 
     <section>
@@ -105,7 +128,6 @@
     <p>영업시간, 주차 정책, 메뉴 가격은 2026-05-03 기준 공개 웹 정보 기반입니다. 매주 일요일 모임 전에는 매장 공지와 지도 앱을 재확인하세요.</p>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="src/app.js"></script>
 </body>
 </html>

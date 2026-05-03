@@ -10,10 +10,7 @@ const weights = {
 const state = {
   origins: [],
   venues: [],
-  excluded: [],
-  markers: [],
-  originMarkers: [],
-  map: null
+  excluded: []
 };
 
 const els = {
@@ -31,7 +28,8 @@ const els = {
   bestOverall: document.getElementById("best-overall"),
   bestTravel: document.getElementById("best-travel"),
   bestParking: document.getElementById("best-parking"),
-  mapCount: document.getElementById("map-count")
+  weightChart: document.getElementById("weight-chart"),
+  originList: document.getElementById("origin-list")
 };
 
 function escapeHtml(value) {
@@ -105,42 +103,6 @@ function normalizeVenue(venue) {
   };
 }
 
-function initMap() {
-  state.map = L.map("map", {
-    zoomControl: true,
-    preferCanvas: true,
-    scrollWheelZoom: false
-  }).setView([37.275, 127.075], 11);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: "&copy; OpenStreetMap"
-  }).addTo(state.map);
-}
-
-function renderOriginMarkers() {
-  for (const marker of state.originMarkers) marker.remove();
-  state.originMarkers = state.origins.map((origin) => {
-    return L.circleMarker([origin.lat, origin.lng], {
-      radius: 8,
-      color: "#fff",
-      weight: 2,
-      fillColor: "#bd3d44",
-      fillOpacity: 1
-    }).addTo(state.map).bindPopup(escapeHtml(origin.name));
-  });
-}
-
-function markerIcon(rank) {
-  const color = rank <= 3 ? "#16805a" : "#2563eb";
-  return L.divIcon({
-    html: `<span class="ranked-marker" style="background:${color}">${rank}</span>`,
-    className: "venue-marker",
-    iconSize: [30, 30],
-    iconAnchor: [15, 15]
-  });
-}
-
 function fillFilters(venues) {
   const areas = [...new Set(venues.map((v) => v.area))].sort();
   const types = [...new Set(venues.map((v) => v.type))].sort();
@@ -197,27 +159,6 @@ function renderInsights(venues) {
   els.bestParking.textContent = [...venues].sort((a, b) => b.scores.parking - a.scores.parking)[0].name;
 }
 
-function renderMap(venues) {
-  for (const marker of state.markers) marker.remove();
-  state.markers = [];
-  renderOriginMarkers();
-
-  venues.forEach((venue, index) => {
-    const marker = L.marker([venue.lat, venue.lng], { icon: markerIcon(index + 1) })
-      .addTo(state.map)
-      .bindPopup(`<strong>${index + 1}위 ${escapeHtml(venue.name)}</strong><br>종합 ${venue.overall}점 · 평균 ${venue.averageMinutes}분 · 최대 ${venue.maxMinutes}분<br>${escapeHtml(venue.parkingSummary)}`);
-    state.markers.push(marker);
-  });
-
-  const allMarkers = [...state.markers, ...state.originMarkers];
-  els.mapCount.textContent = `${venues.length}개 후보 + 거주지 4곳`;
-  if (allMarkers.length) {
-    const group = L.featureGroup(allMarkers);
-    state.map.fitBounds(group.getBounds().pad(0.16), { maxZoom: 12 });
-    window.requestAnimationFrame(() => state.map.invalidateSize());
-  }
-}
-
 function scoreLine(label, value) {
   return `
     <div class="score-line">
@@ -226,6 +167,43 @@ function scoreLine(label, value) {
       <b>${value}</b>
     </div>
   `;
+}
+
+function renderWeights() {
+  const labels = {
+    travelFairness: "이동 균형",
+    parking: "주차",
+    work: "노트북 작업성",
+    price: "가격",
+    weekendCalm: "혼잡 회피",
+    lunch: "점심 연계"
+  };
+  els.weightChart.replaceChildren();
+  Object.entries(weights).forEach(([key, weight]) => {
+    const item = document.createElement("div");
+    item.className = "weight-item";
+    item.innerHTML = `
+      <div>
+        <strong>${labels[key]}</strong>
+        <span>${Math.round(weight * 100)}%</span>
+      </div>
+      <div class="weight-bar"><span style="width:${weight * 100}%"></span></div>
+    `;
+    els.weightChart.appendChild(item);
+  });
+}
+
+function renderOrigins() {
+  els.originList.replaceChildren();
+  state.origins.forEach((origin) => {
+    const item = document.createElement("div");
+    item.className = "origin-item";
+    item.innerHTML = `
+      <strong>${escapeHtml(origin.name)}</strong>
+      <span>${origin.lat.toFixed(3)}, ${origin.lng.toFixed(3)}</span>
+    `;
+    els.originList.appendChild(item);
+  });
 }
 
 function renderTrips(venue) {
@@ -305,12 +283,10 @@ function renderExcluded() {
 function render() {
   const venues = filteredVenues();
   renderInsights(venues);
-  renderMap(venues);
   renderList(venues);
 }
 
 async function main() {
-  initMap();
   const response = await fetch("data/venues.json");
   const data = await response.json();
   state.origins = data.origins;
@@ -318,6 +294,8 @@ async function main() {
   state.venues = data.venues.map(normalizeVenue).sort((a, b) => b.overall - a.overall);
   els.venueCount.textContent = state.venues.length;
   fillFilters(state.venues);
+  renderWeights();
+  renderOrigins();
   renderExcluded();
 
   for (const el of [els.search, els.area, els.type, els.sort, els.parkingOnly, els.priceOnly, els.verifiedOnly]) {
