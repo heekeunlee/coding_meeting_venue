@@ -325,27 +325,83 @@ select {
 }
 
 .map-bg {
+  fill: #f1f5f9;
+}
+
+.map-land {
   fill: #f8fafc;
+  stroke: #cbd5e1;
+  stroke-width: 2;
+}
+
+.map-city {
+  fill: #e8eef5;
+  stroke: #d6dee9;
+  stroke-width: 1.5;
+}
+
+.map-city.yongin {
+  fill: #edf7f1;
+}
+
+.map-city.suwon {
+  fill: #eef4ff;
+}
+
+.map-city.seongnam {
+  fill: #f6f3ea;
+}
+
+.map-city.hwaseong {
+  fill: #f1f5f9;
+}
+
+.map-water {
+  fill: #bfdbfe;
+  opacity: 0.7;
+}
+
+.map-water.small {
+  fill: #bae6fd;
+  opacity: 0.62;
 }
 
 .map-road {
   fill: none;
-  stroke: #cbd5e1;
-  stroke-width: 7;
+  stroke: #b8c3d1;
+  stroke-width: 6;
   stroke-linecap: round;
-  opacity: 0.78;
+  opacity: 0.85;
 }
 
 .map-road.primary {
-  stroke: #94a3b8;
-  stroke-width: 10;
-  opacity: 0.66;
+  stroke: #8796a8;
+  stroke-width: 9;
+  opacity: 0.72;
 }
 
 .map-area {
-  fill: #94a3b8;
-  font-size: 22px;
+  fill: #64748b;
+  font-size: 20px;
   font-weight: 800;
+}
+
+.city-label {
+  fill: #8a96a8;
+  font-size: 24px;
+  opacity: 0.78;
+}
+
+.district-label {
+  fill: #475569;
+  font-size: 16px;
+}
+
+.map-road-label {
+  fill: #738195;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.85;
 }
 
 .map-origin circle {

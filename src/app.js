@@ -260,12 +260,27 @@ function renderSketchMap(venues) {
   els.sketchMap.innerHTML = `
     <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="4명 거주지와 상위 후보 위치도">
       <rect class="map-bg" x="0" y="0" width="${width}" height="${height}" rx="8"></rect>
-      <path class="map-road primary" d="M80 285 C210 210, 310 190, 430 210 S680 260, 820 90"></path>
-      <path class="map-road" d="M115 105 C250 145, 360 130, 500 115 S700 125, 790 170"></path>
-      <path class="map-road" d="M235 320 C300 250, 360 205, 450 170 S590 110, 660 50"></path>
-      <text class="map-area" x="72" y="82">수지</text>
-      <text class="map-area" x="474" y="70">신갈·영통</text>
-      <text class="map-area" x="700" y="308">망포·매탄</text>
+      <path class="map-land" d="M74 62 L240 30 L410 54 L560 24 L794 72 L852 188 L800 312 L586 338 L390 310 L208 336 L48 250 Z"></path>
+      <path class="map-city suwon" d="M476 172 L658 150 L780 220 L746 312 L540 326 L430 270 Z"></path>
+      <path class="map-city yongin" d="M178 98 L430 72 L570 144 L486 266 L258 300 L94 224 Z"></path>
+      <path class="map-city seongnam" d="M112 38 L308 32 L272 104 L152 132 Z"></path>
+      <path class="map-city hwaseong" d="M520 292 L762 276 L826 334 L560 344 Z"></path>
+      <path class="map-water" d="M524 88 C548 70, 594 82, 602 108 C610 136, 560 148, 528 130 C500 116, 500 98, 524 88 Z"></path>
+      <path class="map-water small" d="M378 158 C406 142, 440 150, 452 176 C428 194, 390 194, 370 178 Z"></path>
+      <path class="map-road primary" d="M86 238 C210 204, 310 194, 430 210 S670 258, 818 120"></path>
+      <path class="map-road primary" d="M210 322 C270 260, 346 212, 438 176 S584 98, 696 56"></path>
+      <path class="map-road" d="M98 132 C232 146, 360 126, 500 118 S704 130, 800 178"></path>
+      <path class="map-road" d="M452 56 C460 128, 462 204, 474 318"></path>
+      <path class="map-road" d="M260 282 C376 264, 516 250, 738 280"></path>
+      <text class="map-area city-label" x="146" y="82">성남</text>
+      <text class="map-area city-label" x="260" y="164">용인</text>
+      <text class="map-area city-label" x="594" y="226">수원</text>
+      <text class="map-area city-label" x="668" y="326">화성</text>
+      <text class="map-area district-label" x="92" y="190">수지</text>
+      <text class="map-area district-label" x="380" y="144">신갈</text>
+      <text class="map-area district-label" x="660" y="264">망포·매탄</text>
+      <text class="map-road-label" x="312" y="200">영동고속도로·용인서울축</text>
+      <text class="map-road-label" x="548" y="108">광교호수</text>
       ${originNodes}
       ${venueNodes}
     </svg>
