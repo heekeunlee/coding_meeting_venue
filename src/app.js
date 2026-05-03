@@ -1,10 +1,10 @@
 const weights = {
-  parkingBenefit: 0.45,
-  parkingCapacity: 0.36,
-  openEarly: 0.08,
+  parkingBenefit: 0.65,
+  parkingCapacity: 0.16,
+  openEarly: 0.07,
   weekendCalm: 0.05,
   work: 0.03,
-  access: 0.02,
+  access: 0.03,
   price: 0.01
 };
 
