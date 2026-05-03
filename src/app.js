@@ -10,7 +10,10 @@ const weights = {
 const state = {
   origins: [],
   venues: [],
-  excluded: []
+  excluded: [],
+  map: null,
+  mapMarkers: [],
+  originMarkers: []
 };
 
 const els = {
@@ -208,87 +211,55 @@ function renderOrigins() {
   });
 }
 
-function projectPoint(point, bounds, width, height, padding) {
-  const xRatio = (point.lng - bounds.minLng) / (bounds.maxLng - bounds.minLng || 1);
-  const yRatio = (bounds.maxLat - point.lat) / (bounds.maxLat - bounds.minLat || 1);
-  return {
-    x: padding + xRatio * (width - padding * 2),
-    y: padding + yRatio * (height - padding * 2)
-  };
+function createMap() {
+  state.map = L.map("sketch-map", {
+    zoomControl: true,
+    scrollWheelZoom: false,
+    attributionControl: true
+  }).setView([37.273, 127.075], 11);
+
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap &copy; CARTO"
+  }).addTo(state.map);
+}
+
+function markerIcon(type, label) {
+  const className = type === "origin" ? "leaflet-origin-marker" : "leaflet-venue-marker";
+  return L.divIcon({
+    className,
+    html: `<span>${escapeHtml(label)}</span>`,
+    iconSize: type === "origin" ? [18, 18] : [30, 30],
+    iconAnchor: type === "origin" ? [9, 9] : [15, 15]
+  });
 }
 
 function renderSketchMap(venues) {
   const topVenues = venues.slice(0, 5);
-  const points = [...state.origins, ...topVenues];
-  const width = 900;
-  const height = 360;
-  const padding = 54;
-  const bounds = points.reduce((acc, point) => ({
-    minLat: Math.min(acc.minLat, point.lat),
-    maxLat: Math.max(acc.maxLat, point.lat),
-    minLng: Math.min(acc.minLng, point.lng),
-    maxLng: Math.max(acc.maxLng, point.lng)
-  }), {
-    minLat: Infinity,
-    maxLat: -Infinity,
-    minLng: Infinity,
-    maxLng: -Infinity
+  [...state.mapMarkers, ...state.originMarkers].forEach((marker) => marker.remove());
+  state.mapMarkers = [];
+  state.originMarkers = [];
+
+  state.originMarkers = state.origins.map((origin) => {
+    return L.marker([origin.lat, origin.lng], { icon: markerIcon("origin", "") })
+      .addTo(state.map)
+      .bindTooltip(origin.name, { permanent: true, direction: "right", offset: [10, 0] });
   });
 
-  const originNodes = state.origins.map((origin) => {
-    const p = projectPoint(origin, bounds, width, height, padding);
-    return `
-      <g class="map-origin" transform="translate(${p.x}, ${p.y})">
-        <circle r="8"></circle>
-        <text x="13" y="4">${escapeHtml(origin.name)}</text>
-      </g>
-    `;
-  }).join("");
+  state.mapMarkers = topVenues.map((venue, index) => {
+    return L.marker([venue.lat, venue.lng], { icon: markerIcon("venue", index + 1) })
+      .addTo(state.map)
+      .bindPopup(`<strong>${index + 1}위 ${escapeHtml(venue.name)}</strong><br>종합 ${venue.overall.toFixed(1)}점 · 평균 ${venue.averageMinutes}분<br>${escapeHtml(venue.parkingSummary)}`)
+      .bindTooltip(`${index + 1}. ${venue.name}`, { permanent: true, direction: "right", offset: [16, 0] });
+  });
 
-  const venueNodes = topVenues.map((venue, index) => {
-    const p = projectPoint(venue, bounds, width, height, padding);
-    return `
-      <g class="map-venue" transform="translate(${p.x}, ${p.y})">
-        <circle r="13"></circle>
-        <text class="map-rank" y="4">${index + 1}</text>
-        <text class="map-label" x="18" y="4">${escapeHtml(venue.name)}</text>
-      </g>
-    `;
-  }).join("");
-
+  const allMarkers = [...state.originMarkers, ...state.mapMarkers];
   els.sketchMapCount.textContent = `${topVenues.length}개 후보 표시`;
-  els.sketchMap.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="4명 거주지와 상위 후보 위치도">
-      <rect class="map-bg" x="0" y="0" width="${width}" height="${height}" rx="8"></rect>
-      <path class="map-land" d="M74 62 L240 30 L410 54 L560 24 L794 72 L852 188 L800 312 L586 338 L390 310 L208 336 L48 250 Z"></path>
-      <path class="map-city suwon" d="M476 172 L658 150 L780 220 L746 312 L540 326 L430 270 Z"></path>
-      <path class="map-city yongin" d="M178 98 L430 72 L570 144 L486 266 L258 300 L94 224 Z"></path>
-      <path class="map-city seongnam" d="M112 38 L308 32 L272 104 L152 132 Z"></path>
-      <path class="map-city hwaseong" d="M520 292 L762 276 L826 334 L560 344 Z"></path>
-      <path class="map-water" d="M524 88 C548 70, 594 82, 602 108 C610 136, 560 148, 528 130 C500 116, 500 98, 524 88 Z"></path>
-      <path class="map-water small" d="M378 158 C406 142, 440 150, 452 176 C428 194, 390 194, 370 178 Z"></path>
-      <path class="map-road primary" d="M86 238 C210 204, 310 194, 430 210 S670 258, 818 120"></path>
-      <path class="map-road primary" d="M210 322 C270 260, 346 212, 438 176 S584 98, 696 56"></path>
-      <path class="map-road" d="M98 132 C232 146, 360 126, 500 118 S704 130, 800 178"></path>
-      <path class="map-road" d="M452 56 C460 128, 462 204, 474 318"></path>
-      <path class="map-road" d="M260 282 C376 264, 516 250, 738 280"></path>
-      <text class="map-area city-label" x="146" y="82">성남</text>
-      <text class="map-area city-label" x="260" y="164">용인</text>
-      <text class="map-area city-label" x="594" y="226">수원</text>
-      <text class="map-area city-label" x="668" y="326">화성</text>
-      <text class="map-area district-label" x="92" y="190">수지</text>
-      <text class="map-area district-label" x="380" y="144">신갈</text>
-      <text class="map-area district-label" x="660" y="264">망포·매탄</text>
-      <text class="map-road-label" x="312" y="200">영동고속도로·용인서울축</text>
-      <text class="map-road-label" x="548" y="108">광교호수</text>
-      ${originNodes}
-      ${venueNodes}
-    </svg>
-    <div class="sketch-legend">
-      <span><i class="origin-dot"></i>거주지</span>
-      <span><i class="venue-dot"></i>상위 후보</span>
-    </div>
-  `;
+  if (allMarkers.length) {
+    const group = L.featureGroup(allMarkers);
+    state.map.fitBounds(group.getBounds().pad(0.16), { maxZoom: 12 });
+    window.requestAnimationFrame(() => state.map.invalidateSize());
+  }
 }
 
 function renderTrips(venue) {
@@ -383,6 +354,7 @@ async function main() {
   renderWeights();
   renderOrigins();
   renderExcluded();
+  createMap();
 
   for (const el of [els.search, els.area, els.type, els.sort, els.parkingOnly, els.priceOnly, els.verifiedOnly]) {
     el.addEventListener("input", render);
