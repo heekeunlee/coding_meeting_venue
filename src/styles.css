@@ -322,6 +322,18 @@ select {
 .actual-map {
   width: 100%;
   height: 500px;
+  min-height: 500px;
+  background: #dfe6ee;
+  isolation: isolate;
+}
+
+.actual-map .leaflet-tile-container {
+  will-change: auto;
+}
+
+.actual-map .leaflet-tile {
+  image-rendering: auto;
+  backface-visibility: hidden;
 }
 
 .sketch-legend {

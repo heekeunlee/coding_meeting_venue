@@ -12,6 +12,7 @@ const state = {
   venues: [],
   excluded: [],
   map: null,
+  tileLayer: null,
   mapMarkers: [],
   originMarkers: []
 };
@@ -215,13 +216,24 @@ function createMap() {
   state.map = L.map("sketch-map", {
     zoomControl: true,
     scrollWheelZoom: false,
-    attributionControl: true
+    attributionControl: true,
+    zoomAnimation: false,
+    fadeAnimation: false,
+    markerZoomAnimation: false,
+    preferCanvas: true
   }).setView([37.273, 127.075], 11);
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    maxZoom: 19,
-    attribution: "&copy; OpenStreetMap &copy; CARTO"
+  state.tileLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    minZoom: 9,
+    maxZoom: 18,
+    detectRetina: false,
+    updateWhenIdle: true,
+    updateWhenZooming: false,
+    keepBuffer: 4,
+    attribution: "&copy; OpenStreetMap"
   }).addTo(state.map);
+
+  window.setTimeout(() => state.map.invalidateSize(), 150);
 }
 
 function markerIcon(type, label) {
@@ -257,8 +269,14 @@ function renderSketchMap(venues) {
   els.sketchMapCount.textContent = `${topVenues.length}개 후보 표시`;
   if (allMarkers.length) {
     const group = L.featureGroup(allMarkers);
-    state.map.fitBounds(group.getBounds().pad(0.16), { maxZoom: 12 });
-    window.requestAnimationFrame(() => state.map.invalidateSize());
+    state.map.fitBounds(group.getBounds().pad(0.18), {
+      animate: false,
+      maxZoom: 12
+    });
+    window.setTimeout(() => {
+      state.map.invalidateSize();
+      state.tileLayer.redraw();
+    }, 120);
   }
 }
 
