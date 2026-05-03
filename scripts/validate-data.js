@@ -74,6 +74,10 @@ for (const venue of venues) {
   }
 }
 
+if (venues.length === 0) {
+  console.warn("WARN: no venues match the active constraints");
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

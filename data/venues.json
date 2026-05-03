@@ -1,244 +1,16 @@
 {
   "updatedAt": "2026-05-03",
-  "scope": "용인·수원 일대, 오전 7:30 이전 오픈, 무료/구매 무료 주차 20대 이상 후보",
+  "scope": "용인·수원 일대 스타벅스, 오전 7:30 이전 오픈, 주차 20대 이상, 조건 없는 완전 무료 주차만 허용",
   "scoring": {
-    "parkingCapacity": 0.45,
-    "parkingBenefit": 0.36,
-    "openEarly": 0.07,
-    "weekendCalm": 0.05,
-    "work": 0.03,
-    "access": 0.03,
+    "parkingCapacity": 0.55,
+    "parkingBenefit": 0.3,
+    "openEarly": 0.06,
+    "weekendCalm": 0.04,
+    "work": 0.02,
+    "access": 0.02,
     "price": 0.01
   },
-  "venues": [
-    {
-      "id": "starbucks-suwon-lawtown",
-      "name": "스타벅스 수원법조타운",
-      "area": "수원 광교",
-      "type": "프랜차이즈 카페",
-      "lat": 37.2913,
-      "lng": 127.0708,
-      "openTime": "07:00",
-      "americanoPrice": 4700,
-      "parkingSummary": "결제 시 2시간 무료 등록, 지하 30대 이상",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "30대 이상",
-        "07:00 오픈",
-        "무료등록",
-        "지하주차",
-        "식사 연계"
-      ],
-      "scores": {
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 9,
-        "openEarly": 10,
-        "weekendCalm": 6.5,
-        "work": 7,
-        "access": 8
-      },
-      "notes": "결제 시 2시간 무료 등록과 30대 이상 지하주차가 확인되어 주차 우선 기준에서 가장 안정적입니다.",
-      "mapQuery": "스타벅스 수원법조타운점",
-      "sources": [
-        {
-          "label": "매장 상세정보",
-          "url": "https://www.tabling.co.kr/place/677cd40566de5f06988ca0b5"
-        }
-      ],
-      "parkingSpaces": 30
-    },
-    {
-      "id": "starbucks-yongin-gimryangjang-dt",
-      "name": "스타벅스 용인김량장DT",
-      "area": "용인 처인",
-      "type": "DT 카페",
-      "lat": 37.2357,
-      "lng": 127.2043,
-      "openTime": "07:00",
-      "americanoPrice": 4700,
-      "parkingSummary": "기본 30분 무료, 1만원당 1시간 무료, 전용 35대",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "35대 이상",
-        "07:00 오픈",
-        "DT",
-        "전용주차"
-      ],
-      "scores": {
-        "parkingBenefit": 7,
-        "parkingCapacity": 9.5,
-        "openEarly": 10,
-        "weekendCalm": 7,
-        "work": 7,
-        "access": 6.5
-      },
-      "notes": "전용 35대 주차가 강점입니다. 용인 처인권 참여자가 있으면 최상위 후보입니다.",
-      "mapQuery": "스타벅스 용인김량장DT점",
-      "sources": [
-        {
-          "label": "매장 상세정보",
-          "url": "https://msg.soledot.com/starbucksstore/fo/713/starbucksstoreview.sd"
-        }
-      ],
-      "parkingSpaces": 35
-    },
-    {
-      "id": "starbucks-suwon-gwanggyo",
-      "name": "스타벅스 수원광교",
-      "area": "수원 광교",
-      "type": "프랜차이즈 카페",
-      "lat": 37.2917,
-      "lng": 127.0494,
-      "openTime": "07:00",
-      "americanoPrice": 4700,
-      "parkingSummary": "1만원 이상 1시간, 3만원 이상 2시간, 5만원 이상 3시간 무료, 50대 이상",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "50대 이상",
-        "07:00 오픈",
-        "광교중앙",
-        "식사 연계"
-      ],
-      "scores": {
-        "parkingBenefit": 6.5,
-        "parkingCapacity": 10,
-        "openEarly": 10,
-        "weekendCalm": 6,
-        "work": 7,
-        "access": 8.5
-      },
-      "notes": "주차 가능 대수 50대 이상이고 아브뉴프랑/롯데마트 합산 조건이 있어 주차 여유가 좋습니다. 단독 아메리카노 1잔은 1만원 조건에 못 미치므로 2명 이상 구매 또는 식사 연계가 필요합니다.",
-      "mapQuery": "스타벅스 수원광교점",
-      "sources": [
-        {
-          "label": "매장 상세정보",
-          "url": "https://www.tabling.co.kr/place/677ccb0866de5f06987c82d7"
-        }
-      ],
-      "parkingSpaces": 50
-    },
-    {
-      "id": "starbucks-gwanggyo-sk-view-lake-41f",
-      "name": "스타벅스 광교SK뷰레이크41F",
-      "area": "수원 광교",
-      "type": "전망 카페",
-      "lat": 37.2888,
-      "lng": 127.0677,
-      "openTime": "07:00",
-      "americanoPrice": 4700,
-      "parkingSummary": "음료 구매 후 등록 시 1~2시간 무료/지원 주차, 지하 50대 이상",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "50대 이상",
-        "07:00 오픈",
-        "광교호수",
-        "지하주차",
-        "전망"
-      ],
-      "scores": {
-        "parkingBenefit": 7.5,
-        "parkingCapacity": 10,
-        "openEarly": 10,
-        "weekendCalm": 4.5,
-        "work": 7.5,
-        "access": 8
-      },
-      "notes": "주차 지원과 50대 이상 지하주차가 확인되어 주차 기준에서 강합니다. 다만 광교 대표 인기 매장이라 주말 혼잡도는 감점했습니다.",
-      "mapQuery": "스타벅스 광교SK뷰레이크41F점",
-      "sources": [
-        {
-          "label": "매장 상세정보",
-          "url": "https://www.tabling.co.kr/place/677cd40c66de5f06988cae41"
-        },
-        {
-          "label": "주차 후기",
-          "url": "https://im-info.tistory.com/entry/%EC%BB%A4%ED%94%BC-%EB%B7%B0-%EB%A7%9B%EC%A7%91-%EA%B4%91%EA%B5%90-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4-41%EC%B8%B5-%EA%B3%A0%EC%B8%B5-%EC%A3%BC%EC%B0%A8-%EA%BF%80%ED%8C%81?category=1153242"
-        }
-      ],
-      "parkingSpaces": 50
-    },
-    {
-      "id": "starbucks-suwon-kwonseon-dt",
-      "name": "스타벅스 수원권선DT",
-      "area": "수원 권선",
-      "type": "DT 카페",
-      "lat": 37.2472,
-      "lng": 126.9637,
-      "openTime": "07:00",
-      "americanoPrice": 4700,
-      "parkingSummary": "최초 30분 무료, 1만원 이상 1시간 무료, 음식점 합산 최대 4시간, 공동 40대",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "40대 이상",
-        "07:00 오픈",
-        "DT",
-        "식사 합산"
-      ],
-      "scores": {
-        "parkingBenefit": 7,
-        "parkingCapacity": 10,
-        "openEarly": 10,
-        "weekendCalm": 6.5,
-        "work": 6.5,
-        "access": 6.5
-      },
-      "notes": "공동주차 40대와 음식점 합산 조건이 좋아 차량 여러 대 모임에 유리합니다. 수지·광교 참여자에게는 서쪽으로 멉니다.",
-      "mapQuery": "스타벅스 수원권선DT점",
-      "sources": [
-        {
-          "label": "매장 상세정보",
-          "url": "https://msg.soledot.com/starbucksstore/fo/632/starbucksstoreview.sd"
-        }
-      ],
-      "parkingSpaces": 40
-    },
-    {
-      "id": "starbucks-yongin-gogi-dong",
-      "name": "스타벅스 용인고기동유원지",
-      "area": "용인 수지",
-      "type": "외곽 카페",
-      "lat": 37.3454,
-      "lng": 127.0839,
-      "openTime": "07:30",
-      "americanoPrice": 4700,
-      "parkingSummary": "1만원 이상 구매 시 1시간 무료, 주차장 여러 곳",
-      "freeOrSupportedParking": true,
-      "confidence": "검증됨",
-      "tags": [
-        "20대 이상",
-        "07:30 오픈",
-        "고기동",
-        "외곽",
-        "주차장 여러 곳"
-      ],
-      "scores": {
-        "parkingBenefit": 6.5,
-        "parkingCapacity": 8,
-        "openEarly": 9,
-        "weekendCalm": 4,
-        "work": 6.5,
-        "access": 6.5
-      },
-      "notes": "주차 공간은 여러 곳으로 넓은 편이지만 1만원 이상 구매 시 1시간 무료 조건입니다. 주말 나들이 수요가 있어 혼잡도와 진입 도로는 감점했습니다.",
-      "mapQuery": "스타벅스 용인고기동유원지점",
-      "sources": [
-        {
-          "label": "매장 상세정보",
-          "url": "https://www.tabling.co.kr/place/677cd6d366de5f069891ae36"
-        },
-        {
-          "label": "주차요금 후기",
-          "url": "https://daramidiary.tistory.com/entry/%EA%B3%A0%EA%B8%B0%EB%A6%AC-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4-%EC%86%94%EC%A7%81%ED%9B%84%EA%B8%B0-%EC%9A%A9%EC%9D%B8-%EA%B3%A0%EA%B8%B0%EB%A6%AC-%EA%B3%84%EA%B3%A1-%EC%B9%B4%ED%8E%98-%EC%B6%94%EC%B2%9C"
-        }
-      ],
-      "parkingSpaces": 20
-    }
-  ],
+  "venues": [],
   "excludedExamples": [
     {
       "name": "스타벅스 수원인계DT",
@@ -303,6 +75,30 @@
     {
       "name": "스타벅스 수지성복DT",
       "reason": "주차 3대로 20대 이상 조건 미충족"
+    },
+    {
+      "name": "스타벅스 수원법조타운",
+      "reason": "주차 30대 이상이나 결제 시 2시간 무료 등록, 지하 30대 이상 조건이 있어 완전 무료 아님"
+    },
+    {
+      "name": "스타벅스 용인김량장DT",
+      "reason": "주차 35대 이상이나 기본 30분 무료, 1만원당 1시간 무료, 전용 35대 조건이 있어 완전 무료 아님"
+    },
+    {
+      "name": "스타벅스 수원광교",
+      "reason": "주차 50대 이상이나 1만원 이상 1시간, 3만원 이상 2시간, 5만원 이상 3시간 무료, 50대 이상 조건이 있어 완전 무료 아님"
+    },
+    {
+      "name": "스타벅스 광교SK뷰레이크41F",
+      "reason": "주차 50대 이상이나 음료 구매 후 등록 시 1~2시간 무료/지원 주차, 지하 50대 이상 조건이 있어 완전 무료 아님"
+    },
+    {
+      "name": "스타벅스 수원권선DT",
+      "reason": "주차 40대 이상이나 최초 30분 무료, 1만원 이상 1시간 무료, 음식점 합산 최대 4시간, 공동 40대 조건이 있어 완전 무료 아님"
+    },
+    {
+      "name": "스타벅스 용인고기동유원지",
+      "reason": "주차 20대 이상이나 1만원 이상 구매 시 1시간 무료, 주차장 여러 곳 조건이 있어 완전 무료 아님"
     }
   ]
 }

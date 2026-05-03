@@ -204,6 +204,7 @@ function renderMap(venues) {
     state.map.fitBounds(group.getBounds().pad(0.2), { maxZoom: mapVenues.length > 8 ? 12 : 14 });
     window.requestAnimationFrame(() => state.map.invalidateSize());
   } else {
+    els.mapCount.textContent = "조건 일치 후보 없음";
     state.map.setView([37.2706, 127.0817], 11);
   }
 }
@@ -221,6 +222,20 @@ function scoreLine(label, value) {
 function renderList(venues) {
   els.list.replaceChildren();
   els.resultCount.textContent = `${venues.length}개 표시`;
+
+  if (!venues.length) {
+    const empty = document.createElement("article");
+    empty.className = "venue-card";
+    empty.innerHTML = `
+      <div>
+        <span class="rank">조건 일치 후보 없음</span>
+        <h3>주차 20대 이상 + 완전 무료 주차 스타벅스 후보를 찾지 못했습니다</h3>
+      </div>
+      <p class="notes">현재 확인된 후보들은 주차 대수가 20대 미만이거나, 20대 이상이어도 결제 등록·1만원 이상 구매·1~2시간 무료 같은 조건부 무료입니다. 조건을 유지하면 추천할 장소가 없습니다.</p>
+    `;
+    els.list.appendChild(empty);
+    return;
+  }
 
   venues.forEach((venue, index) => {
     const card = document.createElement("article");
